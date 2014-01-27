@@ -1,0 +1,84 @@
+<link type="text/css" href="templates/default/css/epan.css" rel="stylesheet" />
+<div id="<?$_name?>">
+	<table width="100%" border="1">
+		<tr>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="8%" style='border:none'>&nbsp;</td>
+			<td width="10%" style='border:none'>&nbsp;</td>
+			<td width="10%" style='border:none'>&nbsp;</td>
+		</tr>
+		<tr>
+			<th colspan=2>Bill No :</th>
+			<td colspan=2><?bill_no?>Bill No<?/bill_no?></td>
+			<!-- <td colspan='5'>&nbsp;&nbsp;&nbsp;</td> -->
+			<th colspan=2>Date :</th>
+			<td colspan=6><?bill_date?>Bill Date<?/bill_date?>
+			</td>
+		</tr>
+		<!-- </div> -->
+		<tr>
+			<td colspan='4'>
+				<img src="<?company_logo?>company_logo<?/company_logo?>"/>
+			</td>
+			<td colspan='8'>
+				<?company_name?>company_name<?/company_name?>
+				<?company_address?>company_address<?/company_address?>
+			</td>
+		</tr>
+		<tr>
+			<th colspan='2'>TO
+			</th>
+			<td colspan='10' height='50px;' valign='top'>
+				<?party?>party_name<?/party?> <br/>
+				(<?party_address?><?/party_address?>) 
+				(Mobile : <?party_number?><?/party_number?>)
+			</td>
+		</tr>
+		<tr>
+			<td colspan=12>
+				<?$bill_detail?>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="10">
+				<?company_terms?>company_terms<?/company_terms?>
+			</td>
+			<td colspan="2">
+				<table width='100%' border='1'>
+					<tr>
+						<td width="50%">Gross Total: </td>
+						<td><?gross_total?>Gross Total<?/gross_total?> </td>
+					</tr>
+					<tr>
+						<th >Discount@ </th>
+						<td><?discount?>Discount<?/discount?></td>
+					</tr>
+					<tr>
+						<th>Total :</th>
+						<td><?total?>Total<?/total?></td>
+					</tr>
+					<tr>
+						<th>Tax@ </th>
+						<td><?tax?>tax<?/tax?></td>
+					</tr>
+					<tr>
+						<th>Tax Amount</th>
+						<td><?tax_amount?>Tax Amount<?/tax_amount?></td>
+					</tr>
+					<tr>
+						<th>Net Amount:</th>
+						<td><?net_amount?>Net Amount<?/net_amount?></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>

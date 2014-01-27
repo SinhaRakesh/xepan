@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component>
+	<name>Simple Billing Application</name>
+	<namespace>simpleBillingApp</namespace>
+	<type>application</type>
+	<is_system>No</is_system>
+	<description>billing software</description>
+	<plugin_hooked>No</plugin_hooked>
+	<default_enabled>No</default_enabled>
+	<has_toolbar_tools>No</has_toolbar_tools>
+	<has_owner_modules>No</has_owner_modules>
+	<has_plugins>No</has_plugins>
+	<has_live_edit_app_page>No</has_live_edit_app_page>
+</component>
