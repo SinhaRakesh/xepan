@@ -50,7 +50,7 @@ class page_enquiryformModule_page_submit extends Page {
 			$tm->send( $email_to, "info@epan.in", $subject, $email_body ,false,null);
 		}catch( phpmailerException $e ) {
 			// throw $e;
-			$this->api->js(null,'$("#form-'.$_REQUEST['form_id'].'")[0].reset()')->univ()->errorMessage( $e->errorMessage() . " " . $this->api->current_epan['email_id']  )->execute();
+			$this->api->js(null,'$("#form-'.$_REQUEST['form_id'].'")[0].reset()')->univ()->errorMessage( $e->errorMessage() . " " . $this->api->current_website['email_id']  )->execute();
 		}catch( Exception $e ) {
 			throw $e;
 		}
