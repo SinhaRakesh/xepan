@@ -31,9 +31,9 @@ class page_save extends Page {
 			$this->api->current_page['body_attributes'] = urldecode( $_POST['body_attributes'] );
 
 
-			$this->api->exec_plugins( 'epan-page-before-save', &$this->api->current_page );
+			$this->api->exec_plugins( 'epan-page-before-save', $this->api->current_page );
 			$this->api->current_page->save();
-			$this->api->exec_plugins( 'epan-page-after-save', &$this->api->current_page );
+			$this->api->exec_plugins( 'epan-page-after-save', $this->api->current_page );
 
 			if ( $_POST['take_snapshot']=='Y' ) {
 				// $this->api->exec_plugins('epan-page-before-snapshot',$this->api->current_page);

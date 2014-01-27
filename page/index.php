@@ -16,7 +16,7 @@ class page_index extends Page {
 		$this->api->template->trySet('style',$page_model['body_attributes']);
 
 		try{
-			$this->api->exec_plugins('content-fetched',&$page_model);
+			$this->api->exec_plugins('content-fetched',$page_model);
 			$this->template->setHTML('Content',$page_model['content']);
 		}catch(Exception_StopInit $e){
 
