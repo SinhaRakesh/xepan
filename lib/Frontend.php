@@ -136,7 +136,7 @@ class Frontend extends ApiFrontend{
 				// MULTISITE CONTROLER
 				$this->add( 'Controller_EpanCMSApp' )->frontEnd();
 				if ( $this->current_website->loaded() )
-					$this->exec_plugins( 'website-loaded', &$this->api->current_website );
+					$this->exec_plugins( 'website-loaded', $this->api->current_website );
 				if ( $this->current_page->loaded() )
 					$this->exec_plugins( 'website-page-loaded', $this->api->page_requested );
 
