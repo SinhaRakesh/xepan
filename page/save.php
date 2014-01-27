@@ -9,7 +9,7 @@ class page_save extends Page {
 			$this->js()->univ()->successMessage( 'Length send ' . $_POST['length'] . " AND Length calculated again is " . strlen( $_POST['body_html'] ) )->execute();
 		}
 
-		if ( $_POST['crc32'] != crc32( $_POST['body_html'] ) ) {
+		if ( $_POST['crc32'] != sprintf("%u",crc32( $_POST['body_html'] ) )) {
 			$this->js()->univ()->successMessage( 'CRC send ' . $_POST['crc32'] . " AND CRC calculated again is " . crc32( $_POST['body_html'] ) )->execute();
 		}
 
