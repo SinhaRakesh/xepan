@@ -30,6 +30,16 @@ class Model_Epan extends Model_Table {
 		$this->addField('description')->type('text');//->system(true);
 		$this->addField('last_email_sent')->type('datetime')->defaultValue(date('Y-m-d H:i:s'));
 
+		// Email Settings
+		$this->addField('email_host');
+		$this->addField('email_port');
+		$this->addField('email_username');
+		$this->addField('email_password');
+		$this->addField('email_reply_to');
+		$this->addField('email_reply_to_name');
+		$this->addField('email_from');
+		$this->addField('email_from_name');
+
 		$this->addField('parked_domain')->hint('Specify your domain in yourdomainname.com format');
 
 		$this->addField('allowed_aliases')->type('int')->defaultValue(2);
