@@ -2,7 +2,7 @@
 $config['installed']=true;
 
 $config['atk']['base_path']='./atk4/';
-$config['dsn']='mysql://root:winserver@localhost/tcms2';
+$config['dsn']='mysql://root:winserver@localhost/tcms1';
 
 
 $config['url_postfix']='';
