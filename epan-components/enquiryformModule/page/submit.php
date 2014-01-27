@@ -1,12 +1,13 @@
 <?php
 
-class page_enquiryformModule_page_submit extends page_base_editorAjax {
+class page_enquiryformModule_page_submit extends Page {
 
 	public $required_login=false;
 
 	function init(){
 		parent::init();
 		$x='Enquiry-Submitted';
+
 
 		$this->api->exec_plugins('goal-achieved',$x);
 
@@ -38,7 +39,7 @@ class page_enquiryformModule_page_submit extends page_base_editorAjax {
 		$msg=$this->add( 'SMLite' );
 		$msg->loadTemplate( 'mail/enquiryform' );
 
-		$msg->trySet('epan',$this->api->current_epan['name']);
+		$msg->trySet('epan',$this->api->current_website['name']);
 		$msg->trySetHTML('form_entries',$enquiry_entries);
 
 		$email_body=$msg->render();
