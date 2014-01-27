@@ -10,7 +10,7 @@ class page_save extends Page {
 		}
 
 		if ( $_POST['crc32'] != sprintf("%u",crc32( $_POST['body_html'] ) )) {
-			$this->js()->univ()->successMessage( 'CRC send ' . $_POST['crc32'] . " AND CRC calculated again is " . crc32( $_POST['body_html'] ) )->execute();
+			$this->js()->univ()->successMessage( 'CRC send ' . $_POST['crc32'] . " AND CRC calculated again is " . sprintf("%u",crc32( $_POST['body_html'] )) )->execute();
 		}
 
 		try{

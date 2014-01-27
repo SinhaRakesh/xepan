@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: xepan
+-- Host: localhost    Database: tcms1
 -- ------------------------------------------------------
 -- Server version	5.5.28-0ubuntu0.12.04.2
 
@@ -106,6 +106,14 @@ CREATE TABLE `epan` (
   `last_email_sent` datetime DEFAULT NULL,
   `allowed_aliases` int(11) DEFAULT NULL,
   `parked_domain` varchar(255) DEFAULT NULL,
+  `email_host` varchar(255) DEFAULT NULL,
+  `email_port` varchar(255) DEFAULT NULL,
+  `email_username` varchar(255) DEFAULT NULL,
+  `email_password` varchar(255) DEFAULT NULL,
+  `email_reply_to` varchar(255) DEFAULT NULL,
+  `email_reply_to_name` varchar(255) DEFAULT NULL,
+  `email_from` varchar(255) DEFAULT NULL,
+  `email_from_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_epan_staff1` (`staff_id`),
   KEY `fk_epan_epan_categories1` (`category_id`),
@@ -119,7 +127,7 @@ CREATE TABLE `epan` (
 
 LOCK TABLES `epan` WRITE;
 /*!40000 ALTER TABLE `epan` DISABLE KEYS */;
-INSERT INTO `epan` VALUES (1,'web',1,1,'admin','5000000','2014-01-26',1,'Xavoc Technocrats Pvt. Ltd.','Xavoc Admin','+91 8875191258','18/436, Gayatri marg, Kanji Ka hata, Udaipur, Rajasthan , India','Udaipur','Rajasthan','India','info@xavoc.com','cms','world\'s best cms','http://www.xavoc.com',1,1,NULL,1,NULL);
+INSERT INTO `epan` VALUES (1,'web',1,1,'admin','5000000','2014-01-26',1,'Xavoc Technocrats Pvt. Ltd.','Xavoc Admin','+91 8875191258','18/436, Gayatri marg, Kanji Ka hata, Udaipur, Rajasthan , India','Udaipur','Rajasthan','India','info@xavoc.com','xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','http://www.xavoc.com',1,1,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `epan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +239,7 @@ CREATE TABLE `epan_installed_components` (
   `params` varchar(255) DEFAULT NULL,
   `installed_on` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +248,7 @@ CREATE TABLE `epan_installed_components` (
 
 LOCK TABLES `epan_installed_components` WRITE;
 /*!40000 ALTER TABLE `epan_installed_components` DISABLE KEYS */;
-INSERT INTO `epan_installed_components` VALUES (1,1,13,1,NULL,'2014-01-26');
+INSERT INTO `epan_installed_components` VALUES (1,1,13,1,NULL,'2014-01-26'),(2,1,8,1,NULL,'2014-01-27');
 /*!40000 ALTER TABLE `epan_installed_components` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +283,7 @@ CREATE TABLE `epan_page` (
 
 LOCK TABLES `epan_page` WRITE;
 /*!40000 ALTER TABLE `epan_page` DISABLE KEYS */;
-INSERT INTO `epan_page` VALUES (1,'home','Home',1,0,'Your First Website','CMS Website',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `epan_page` VALUES (1,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.','\n  \n','cursor: auto;',NULL,'2014-01-27 23:41:23');
 /*!40000 ALTER TABLE `epan_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,13 +378,13 @@ INSERT INTO `staff` VALUES (1,'Staff1',1,'xadmin','x123',100);
 UNLOCK TABLES;
 
 --
--- Table structure for table `usersManagementApp_users`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `usersManagementApp_users`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `usersManagementApp_users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `epan_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -386,16 +394,17 @@ CREATE TABLE `usersManagementApp_users` (
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_epan_id` (`epan_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usersManagementApp_users`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `usersManagementApp_users` WRITE;
-/*!40000 ALTER TABLE `usersManagementApp_users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usersManagementApp_users` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,1,'Xavoc','xavoc','123','2014-01-27','SuperUser');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -464,4 +473,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-26 13:45:03
+-- Dump completed on 2014-01-27 23:41:55
