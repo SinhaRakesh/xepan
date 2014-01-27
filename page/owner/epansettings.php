@@ -13,7 +13,7 @@ class page_owner_epansettings extends page_base_owner {
 		$credentials_tab = $tabs->addTab('Your Credentials');
 
 		$epan_info_form = $epan_info->add('Form');
-		$epan_info_form->setModel($this->api->auth->model,array('category_id','company_name','contact_person_name','mobile_no','email_id','address','city','state','country','keywords','description'));
+		$epan_info_form->setModel($this->api->current_website,array('category_id','company_name','contact_person_name','mobile_no','email_id','address','city','state','country','keywords','description'));
 		$epan_info_form->addSubmit('Update');
 		if($epan_info_form->isSubmitted()){
 			$epan_info_form->update();
