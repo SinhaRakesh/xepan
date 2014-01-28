@@ -24,6 +24,17 @@ class page_owner_epansettings extends page_base_owner {
 		$email_form->setModel($this->api->current_website,array('email_host','email_port','email_username','email_password','email_reply_to','email_reply_to_name','email_from','email_from_name'));
 		$email_form->addSubmit('Update');
 
+		// Add Placeholder values
+		
+		$email_form->getElement('email_host')->setAttr('placeholder','i.e. ssl://mail.domain.com');
+		$email_form->getElement('email_port')->setAttr('placeholder','465');
+		$email_form->getElement('email_username')->setAttr('placeholder','your email id');
+		$email_form->getElement('email_password')->setAttr('placeholder','your email password');
+		$email_form->getElement('email_reply_to')->setAttr('placeholder','i.e. info@domain.com');
+		$email_form->getElement('email_reply_to_name')->setAttr('placeholder','Your Name');
+		$email_form->getElement('email_from')->setAttr('placeholder','Your email id');
+		$email_form->getElement('email_from_name')->setAttr('placeholder','Your Name');
+
 		if($email_form->isSubmitted()){
 			$email_form->update();
 			$email_form->js()->univ()->successMessage('Information Updated')->execute();
