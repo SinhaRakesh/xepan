@@ -117,11 +117,11 @@ class page_install extends Page {
 		$skip_button=$email_form->addSubmit('Skip');
 
 		if($skip_button->isClicked())
-			$email_form->js(null,$email_form->js()->univ()->redirect($this->api->url(null,array('step'=>3))))->univ()->successMessage("Installed Successfully")->execute();
+			$email_form->js(null,$email_form->js()->univ()->redirect($this->api->url(null,array('step'=>3))))->execute();
 		
 		if($email_form->isSubmitted()){
 			$email_form->update();
-			$email_form->js(null,$email_form->js()->univ()->redirect($this->api->url(null,array('step'=>3))))->univ()->successMessage("Installed Successfully")->execute();
+			$email_form->js(null,$email_form->js()->univ()->redirect($this->api->url(null,array('step'=>3))))->execute();
 		}
 
 
