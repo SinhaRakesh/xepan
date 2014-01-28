@@ -12,7 +12,7 @@ class Model_Epan extends Model_Table {
 		// Name is Default Alias for this epan
 		$this->addField('name')->caption('Epan Name')->hint('Any unique name for your epan like your_epan_name.epan.in')->mandatory('Epan alias is must');
 		// $this->addField('alias2')->caption('Alias 2')->hint('Any unique name for your epan like your_epan_name.epan.in')->mandatory('Epan alias is must');
-		$this->addField('password')->mandatory('Password is must to proceed');
+		$this->addField('password')->mandatory('Password is must to proceed')->type('password');
 		$this->addField('fund_alloted');
 		$this->addField('company_name');
 		$this->addField('contact_person_name');
@@ -34,7 +34,7 @@ class Model_Epan extends Model_Table {
 		$this->addField('email_host');
 		$this->addField('email_port');
 		$this->addField('email_username');
-		$this->addField('email_password');
+		$this->addField('email_password')->type('password');
 		$this->addField('email_reply_to');
 		$this->addField('email_reply_to_name');
 		$this->addField('email_from');
