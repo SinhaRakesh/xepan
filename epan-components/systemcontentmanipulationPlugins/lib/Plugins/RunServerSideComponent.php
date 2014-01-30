@@ -8,7 +8,7 @@ class Plugins_RunServerSideComponent extends \componentBase\Plugin {
 
 	function init(){
 		parent::init();
-		$this->addHook('output-fetched',array($this,'runServerSideComponent'));
+		$this->addHook('content-fetched',array($this,'runServerSideComponent'));
 	}
 
 	function runServerSideComponent($obj,$page){

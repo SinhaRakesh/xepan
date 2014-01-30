@@ -18,7 +18,7 @@ class Model_Users extends Model_Table {
 	}
 
 	function beforeDelete(){
-		if($this['username'] == $this->ref('epan_id')->get('name'));
+		if($this['username'] == $this->ref('epan_id')->get('name'))
 			throw $this->exception("You Can't delete it, it is default username");
 			
 	}
