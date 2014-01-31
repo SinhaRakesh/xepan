@@ -5,9 +5,7 @@ class page_componentBase_page_uninstall extends Page {
 	public $component_marketplace_id;
 	public $installed_component_id;
 
-	function init(){
-		parent::init();
-
+	function uninstall(){
 		$this_class  = get_class($this);
 		preg_match("/page_(.*)_page_(.*)/", $this_class,$namespace);
 

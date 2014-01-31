@@ -21,6 +21,8 @@ class Model_EpanPage extends Model_Table {
 		$this->addField('created_on')->type('datetime')->defaultValue(date('Y-m-d H:i:s'));
 		$this->addField('updated_on')->type('datetime');
 
+		$this->addField('access_level')->setValueList(array("public"=>'Public',"registered_user"=>'Registered User',"backend_user"=>'Back End User',"super_user"=>'Super user'))->defaultValue('public')->mandatory(true);
+
 		$this->hasMany('EpanPageSnapshots','epan_page_id');
 
 		$this->addHook('beforeSave',$this);

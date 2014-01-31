@@ -25,7 +25,7 @@ class page_owner_epanpages extends page_base_owner {
 			$duplicate_field->setEmptyText('Empty Page, No Duplicate');
 		}
 
-		$crud->setModel($this->api->current_website->ref('EpanPage'),array('name','menu_caption','title','description','keywords'));
+		$crud->setModel($this->api->current_website->ref('EpanPage'),array('name','menu_caption','title','description','keywords','access_level'));
 
 		if($f=$crud->form){
 			if($f->model->loaded()){

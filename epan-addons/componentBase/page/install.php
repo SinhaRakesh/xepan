@@ -17,7 +17,7 @@ class page_componentBase_page_install extends Page {
 		$this->component_marketplace_id = $marketplace->id;
 
 		$this_component = $this->add('Model_InstalledComponents');
-		$this_component->addCondition('epan_id',$this->api->auth->model->id);
+		$this_component->addCondition('epan_id',$this->api->current_website->id);
 		$this_component->addCondition('component_id',$this->component_marketplace_id);
 
 		$this_component->tryLoadAny();

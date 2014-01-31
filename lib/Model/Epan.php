@@ -48,7 +48,7 @@ class Model_Epan extends Model_Table {
 		
 		// User options
 		$this->addField('is_frontent_regiatrstion_allowed')->type('boolean')->defaultValue(true);
-		$this->addField('user_activation')->enum(array('self_activated','admin_activated',"default_activated"))->defaultValue('self_activated')->mandatory(true);
+		$this->addField('user_activation')->setValueList(array('self_activated'=>'Self Activated','admin_activated'=>'Admin Activated',"default_activated"=>'Default Activated'))->defaultValue('self_activated')->mandatory(true);
 
 
 		$this->hasMany('Aliases','epan_id'); 
