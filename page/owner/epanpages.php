@@ -13,6 +13,8 @@ class page_owner_epanpages extends page_base_owner {
 			exit;
 		}
 
+		$this->add( 'H1' )->setHTML( strtoupper($this->api->current_website['name']) . " :: Pages <small>Pages and snapshots for your current website / application </small>" );
+
 		$crud = $this->add('CRUD');
 		
 		if($f=$crud->form){

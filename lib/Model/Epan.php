@@ -45,6 +45,12 @@ class Model_Epan extends Model_Table {
 		$this->addField('allowed_aliases')->type('int')->defaultValue(2);
 		
 		$this->hasMany('Users','epan_id');
+		
+		// User options
+		$this->addField('is_frontent_regiatrstion_allowed')->type('boolean')->defaultValue(true);
+		$this->addField('user_activation')->enum(array('self_activated','admin_activated',"default_activated"))->defaultValue('self_activated')->mandatory(true);
+
+
 		$this->hasMany('Aliases','epan_id'); 
 
 

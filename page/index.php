@@ -4,7 +4,7 @@ class page_index extends Page {
 	function init(){
 		parent::init();
 
-		if($this->api->auth->isLoggedIn() AND $this->api->auth->model->ref('epan_id')->get('name')==$this->api->website_requested){
+		if($this->api->auth->isLoggedIn() AND $this->api->auth->model->ref('epan_id')->get('name')==$this->api->website_requested AND ($this->api->auth->model['type'] == 'SuperUser' OR $this->api->auth->model['type'] == 'BackEndUser')){
 			$this->api->edit_mode=true;			
 			$this->api->add('editingToolbar/View_FrontToolBar');
 		}

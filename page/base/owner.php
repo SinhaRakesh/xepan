@@ -5,6 +5,7 @@ class page_base_owner extends Page {
 	function init(){
 		parent::init();
 
+		$this->api->auth->setModel($this->add('Model_Users')->addCondition('type','<>','FrontEndUser'),'username','password');
 		$this->api->auth->check();
 		$this->api->current_website = $this->api->auth->model->ref('epan_id');
 		$this->api->current_page = $this->api->current_website->ref('EpanPage');

@@ -5,6 +5,7 @@ class page_owner_epansettings extends page_base_owner {
 	function page_index(){
 		// parent::init();
 
+		$this->add( 'H1' )->setHTML( strtoupper($this->api->current_website['name']) . " General Settings <small>Your basic company details and outgoing email settings </small>" );
 		$this->tabs = $tabs = $this->add('Tabs');
 		$epan_info = $tabs->addTab('Information');
 		// TODO delete from single Web based CMS
