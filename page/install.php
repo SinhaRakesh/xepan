@@ -80,7 +80,6 @@ class page_install extends Page {
 			$user['epan_id']=$epan->id;
 			$user['name']=$form['owner_name'];
 			$user['username']=$form['owner_username'];
-			$user['username']=$form['owner_username'];
 			$user['password']=$form['owner_password'];
 			$user['type']='SuperUser';
 			$user->save();
