@@ -1,8 +1,8 @@
 <?php
-$config['installed']=true;
+$config['installed']=false;
 
 $config['atk']['base_path']='./atk4/';
-$config['dsn']='mysql://root:winserver@localhost/ttt';
+$config['dsn']='mysql://{database_username}:{database_password}@{host}/{database}';
 
 
 $config['url_postfix']='';
