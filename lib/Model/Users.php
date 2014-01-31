@@ -26,7 +26,9 @@ class Model_Users extends Model_Table {
 		// Check username for THIS EPAN
 		$old_user = $this->add('Model_Users');
 		$old_user->addCondition('username',$this['username']);
-		$old_user->addCondition('epan_id',$this->api->current_website->id);
+		
+		if(isset($this->api->current_website))
+			$old_user->addCondition('epan_id',$this->api->current_website->id);
 		if($this->loaded()){
 			$old_user->addCondition('id','<>',$this->id);
 		}
