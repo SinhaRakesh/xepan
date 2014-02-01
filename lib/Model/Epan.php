@@ -281,7 +281,7 @@ class Model_Epan extends Model_Table {
 
 // GLOBAL FUNCTION OUT OF CLASS
 
-if(!function_exists('deleteDir')){
+if(!function_exists('destroy_dir')){
 
 function destroy_dir($dir) { 
     if (!is_dir($dir) || is_link($dir)) return unlink($dir); 

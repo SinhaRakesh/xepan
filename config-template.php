@@ -34,3 +34,6 @@ $config['website_domain']='localhost/xepan';
 
 if(!defined('DIRECTORY_SEPERATOR'))
 	define('DIRECTORY_SEPERATOR','/');
+
+if(!defined('DS'))
+	define('DS',DIRECTORY_SEPERATOR);
