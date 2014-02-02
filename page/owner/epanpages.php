@@ -5,7 +5,7 @@ class page_owner_epanpages extends page_base_owner {
 	function page_index(){
 		if($_GET['live_edit']){
 			$page = $this->add('Model_EpanPage')->load($_GET['live_edit']);
-			if($this->api->getConfig('sef_url')/* AND false*/){
+			if($this->api->getConfig('sef_url') AND false){
 				$this->js()->_selector('window')->univ()->location("http://".$page->ref('epan_id')->get('name').".epan.in/".$page['name'])->execute();
 			}else{
 				$this->api->redirect($this->api->url('index',array('epan'=>$this->api->current_website['name'],'subpage'=>$page['name'])));

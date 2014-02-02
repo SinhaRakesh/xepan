@@ -82,6 +82,7 @@ class page_install extends Page {
 			$user['username']=$form['owner_username'];
 			$user['password']=$form['owner_password'];
 			$user['type']='SuperUser';
+			$user['is_active']=true;
 			$user->save();
 
 			$form->js(null,$form->js()->univ()->redirect($this->api->url(null,array('step'=>2))))->univ()->successMessage("Installed Successfully")->execute();

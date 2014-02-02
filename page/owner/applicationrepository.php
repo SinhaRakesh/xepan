@@ -9,7 +9,7 @@ class page_owner_applicationrepository extends page_base_owner {
 
 		$this->add_component_btn = $this->add('componentList/View_AddComponentToRepository');
 		//TODO keep the line below in single CMS
-		//  $this->add('Controller_EpanCMSApp')->ownerComponentRepository();
+		 $this->add('Controller_EpanCMSApp')->ownerComponentRepository();
 
 		$form= $this->add('Form');
 		$form->addClass('stacked');

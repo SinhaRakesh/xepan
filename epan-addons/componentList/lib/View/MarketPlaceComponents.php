@@ -34,6 +34,8 @@ class View_MarketPlaceComponents extends \CompleteLister {
 
 		$this->current_row['info_btn'] = $this->js()->univ()->frameURL($this->model['name'],$this->api->url('owner_installcomponent',array('component_id'=>$this->model->id)));
 		$this->current_row['remove_btn'] = $this->js()->univ()->frameURL("Remove From Repository " . $this->model['name'],$this->api->url($this->model['namespace'].'_page_removecomponent',array('component_id'=>$this->model->id)));
+
+		$this->add('Controller_EpanCMSApp')->cmsMarketPlaceView();
 	}
 
 	function defaultTemplate(){
