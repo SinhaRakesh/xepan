@@ -17,7 +17,6 @@ if(isset($_GET['page'])){
 		$session_var='system';
 	}
 }
-
 include 'atk4/loader.php';
 $api=new Frontend($session_var);
 $api->main();

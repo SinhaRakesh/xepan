@@ -18,6 +18,13 @@ class Controller_EpanCMSApp extends AbstractController {
 	
 	function cmsMarketPlaceView(){}
 
+	function epanModel(){
+		$this->owner->addField('grace_period_end_date')->type('date')->defaultValue(date('Y-m-d',strtotime('+3 day',strtotime(date('Y-m-d')))));
+		$this->owner->addField('last_paid_on')->type('date')->defaultValue(null);
+		$this->owner->addField('pay_to_company')->defaultValue('400');
+
+	}
+
 
 
 }

@@ -1,7 +1,7 @@
 <?php
 namespace componentList;
 class View_MarketPlaceComponents extends \CompleteLister {
-	
+	public $from_system=false;	
 	function formatRow(){
 		$type = $this->current_row['type'] = strtoupper(substr($this->model['type'], 0,1));
 		switch ($type) {
@@ -35,7 +35,8 @@ class View_MarketPlaceComponents extends \CompleteLister {
 		$this->current_row['info_btn'] = $this->js()->univ()->frameURL($this->model['name'],$this->api->url('owner_installcomponent',array('component_id'=>$this->model->id)));
 		$this->current_row['remove_btn'] = $this->js()->univ()->frameURL("Remove From Repository " . $this->model['name'],$this->api->url($this->model['namespace'].'_page_removecomponent',array('component_id'=>$this->model->id)));
 
-		$this->add('Controller_EpanCMSApp')->cmsMarketPlaceView();
+		if(!$this->from_system)
+			$this->add('Controller_EpanCMSApp')->cmsMarketPlaceView();
 	}
 
 	function defaultTemplate(){

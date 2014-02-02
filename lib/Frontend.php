@@ -201,9 +201,9 @@ class Frontend extends ApiFrontend{
 		if ( strpos( str_replace( "/", "_", $_GET['page'] ), 'branch_' )!==false ) {
 			return array( 'branch' );
 		}
-		if ( strpos( str_replace( "/", "_", $_GET['page'] ), 'system_' )!==false ) {
-			return array( 'system' );
-		}
+		// if ( strpos( str_replace( "/", "_", $_GET['page'] ), 'system_' )!==false ) {
+		// 	return array( 'system' );
+		// }
 		return array( 'shared' );
 	}
 

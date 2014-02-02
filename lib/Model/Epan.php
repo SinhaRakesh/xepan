@@ -67,7 +67,7 @@ class Model_Epan extends Model_Table {
 		$this->addHook('beforeDelete',$this);
 
 		$this->setOrder('created_at','desc');
-
+		$this->add('Controller_EpanCMSApp')->epanModel();
 		$this->add('dynamic_model/Controller_AutoCreator');
 	}
 
