@@ -19,5 +19,5 @@ xEpan CMS is developed by R&D department at Xavoc Technocrats Pvt. Ltd. The syst
 
 ## Copyright
 1. Copyright (C) 2014 - 2015. All rights reserved.
-2. xEpan is distributed under Affero GNU Public License for personal, private and open-source projects. For commercial projects you should purchase an inexpensive life-time license.
+2. xEpan CMS is distributed under Affero GNU Public License for personal, private and open-source projects. For commercial projects you should purchase an inexpensive life-time license for each of your paying client.
 3. See Licenses details at http://docs.xepan.org/xEpan_Licenses

@@ -5,6 +5,9 @@ class page_componentBase_page_removecomponent extends Page {
 		$v=$this->add('View_Error')->set('Are You Sure ?');
 		$btn=$this->add('Button')->set('Confirm');
 
+		// Controller EPAN to check if system or not
+		// If not system show error in controller to 
+
 		if($btn->isClicked()){			
 			$installed=$this->api->current_website
 					->ref('InstalledComponents')
