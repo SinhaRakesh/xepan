@@ -334,9 +334,9 @@ $('#epan-save-btn').click(function(event){
     
 });
 
-$('body').dblclick(function(event){
-    unSelectAllComponent();
-});
+// $('body').dblclick(function(event){
+//     unSelectAllComponent();
+// });
 
 makeSelectable($('.epan-component'));
 updateActionButtons();
@@ -482,11 +482,15 @@ $(function(){
         $('#epan-quick-component-options').toggle('slideup');
     });
 
+    shortcut.add("F9",function(event) {
+        unSelectAllComponent();
+        $('#epan-quick-component-options').hide('fast');
+        $('.epan-frontend-editing-toolbar').hide('fast');
+    });
+
     shortcut.add("Esc",function(event) {
         unSelectAllComponent();
-        $('.epan-frontend-editing-toolbar').hide('fast');
         $('#epan-quick-component-options').hide('fast');
-
     });
 
     shortcut.add("Ctrl+Shift+d",function(event) {

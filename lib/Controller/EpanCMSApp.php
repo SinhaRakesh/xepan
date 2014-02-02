@@ -14,4 +14,6 @@ class Controller_EpanCMSApp extends AbstractController {
 
 	function ownerComponentRepository(){}
 
+	function emailSettings($email){}
+
 }
