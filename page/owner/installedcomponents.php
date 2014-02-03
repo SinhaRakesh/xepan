@@ -12,7 +12,7 @@ class page_owner_installedcomponents extends page_base_owner {
 		
 		$installed_components = $this->add('Model_InstalledComponents');
 		
-		$installed_components->addCondition('epan_id',$this->api->auth->model->id);
+		$installed_components->addCondition('epan_id',$this->api->current_website->id);
 		$installed_components->addCondition('type','<>','element');
 		$installed_components->addCondition('is_system',false);
 

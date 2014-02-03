@@ -13,7 +13,7 @@ class page_updater extends Page {
 	}
 
 	function page_b(){
-		$user=$this->add('Model_User');
+		$user=$this->add('Model_Users');
 		$epans=$this->add('Model_Epan');
 		foreach ($epans as $junk) {
 			$user['name']=$epans['name'];
@@ -22,6 +22,7 @@ class page_updater extends Page {
 			$user['created_at']=$epans['created_at'];
 			$user['type']='SuperUser';
 			$user['is_active']=true;
+			$user['epan_id']=$epans->id;
 			$user->saveAndUnload();
 		}
 

@@ -22,7 +22,7 @@ class page_owner_installcomponent extends page_base_owner {
 		}
 
 		if( $this->add('Model_InstalledComponents')
-			->addCondition('epan_id',$this->api->auth->model->id)
+			->addCondition('epan_id',$this->api->current_website->id)
 			->addCondition('component_id',$component->id)
 			->tryLoadAny()
 			->loaded())
