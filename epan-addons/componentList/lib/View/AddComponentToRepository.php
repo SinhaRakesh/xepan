@@ -66,6 +66,8 @@ class View_AddComponentToRepository extends \View{
 					if ( !$zip->extractZip( $_FILES['component_file']['tmp_name'], getcwd().DIRECTORY_SEPERATOR. 'epan-components'.DIRECTORY_SEPERATOR. $config_array['namespace'] ) ) {
 						return "Couldn't Extract";
 					}
+
+					// TODO Execute install.sql file IF EXISTS
 				}
 			}
 		}

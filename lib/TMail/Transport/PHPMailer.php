@@ -22,10 +22,14 @@ class TMail_Transport_PHPMailer extends AbstractObject {
         $mail->Port       = $this->api->current_website['email_port'];
         $mail->Username   = $this->api->current_website['email_username'];
         $mail->Password   = $this->api->current_website['email_password'];
+        
+        if($this->add('Controller_EpanCMSApp')->emailSettings($mail) !== true){
+            $mail->AddReplyTo($this->api->current_website['email_reply_to'], $this->api->current_website['email_reply_to_name']);
+            $mail->SetFrom($this->api->current_website['email_from'], $this->api->current_website['email_from_name']);
+        }
+
         $mail->SMTPAuthSecure = 'ssl';
-        $mail->AddReplyTo($this->api->current_website['email_reply_to'], $this->api->current_website['email_reply_to_name']);
         $mail->AddAddress($to);
-        $mail->SetFrom($this->api->current_website['email_from'], $this->api->current_website['email_from_name']);
         $mail->Subject = $subject;
         $mail->MsgHTML($body);
         $mail->AltBody = null;

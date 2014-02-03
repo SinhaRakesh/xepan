@@ -491,7 +491,6 @@ $(function(){
     shortcut.add("Esc",function(event) {
         unSelectAllComponent();
         $('#epan-quick-component-options').hide('fast');
-
     });
 
     shortcut.add("Ctrl+Shift+d",function(event) {
