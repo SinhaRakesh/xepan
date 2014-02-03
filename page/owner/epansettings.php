@@ -7,10 +7,7 @@ class page_owner_epansettings extends page_base_owner {
 
 		$this->add( 'H1' )->setHTML( strtoupper($this->api->current_website['name']) . " General Settings <small>Your basic company details and outgoing email settings </small>" );
 		$this->tabs = $tabs = $this->add('Tabs');
-		$epan_info = $tabs->addTab('Information');
-		// TODO delete from single Web based CMS
-		$this->add('Controller_EpanCMSApp')->addAliasesPage();
-		
+		$epan_info = $tabs->addTab('Information'); 		
 
 		$epan_info_form = $epan_info->add('Form');
 		$epan_info_form->setModel($this->api->current_website,array('category_id','company_name','contact_person_name','mobile_no','email_id','address','city','state','country','keywords','description'));
