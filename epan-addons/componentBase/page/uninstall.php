@@ -16,7 +16,7 @@ class page_componentBase_page_uninstall extends Page {
 		$this->component_marketplace_id = $marketplace->id;
 
 		$component_installed = $this->add('Model_InstalledComponents');
-		$component_installed->addCondition('epan_id',$this->api->auth->model->id);
+		$component_installed->addCondition('epan_id',$this->api->current_website->id);
 		$component_installed->addCondition('component_id',$this->component_marketplace_id);
 		$component_installed->tryLoadAny();
 
