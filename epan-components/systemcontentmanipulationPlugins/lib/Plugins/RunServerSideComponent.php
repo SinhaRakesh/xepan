@@ -21,8 +21,13 @@ class Plugins_RunServerSideComponent extends \componentBase\Plugin {
 			$namespace =  pq($ssc)->attr('data-responsible-namespace');
 			$view =  pq($ssc)->attr('data-responsible-view');
 			$temp_view = $this->add("$namespace/$view",array('options'=>pq($ssc)->attr('data-options')));
-			$html = $temp_view->getHTML();
-			pq($ssc)->html("")->append($html);
+			if($_GET['cut_object'] == $temp_view->name){
+				$temp_view->recursiveRender();
+				$temp_view->render();
+			}else{
+				$html = $temp_view->getHTML();
+				pq($ssc)->html("")->append($html);
+			}
 
 		}
 		$page['content'] = $doc->htmlOuter();
