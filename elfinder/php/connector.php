@@ -3,6 +3,10 @@
 session_name('web');
 session_start();
 
+if(!isset( $_SESSION['o']['web']['website_requested']) OR  $_SESSION['o']['web']['website_requested'] == ''){
+	exit;
+}
+
 // echo "<pre>";
 // print_r($_SESSION);
 // echo "</pre>";
