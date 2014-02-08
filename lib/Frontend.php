@@ -139,12 +139,20 @@ class Frontend extends ApiFrontend{
 
 				$this->load_plugins();
 			}
+			$auth=$this->add( 'BasicAuth' );
+			$auth->setModel( 'Users', 'username', 'password' );
+
+			if($this->api->auth->isLoggedIn() AND $this->api->auth->model->ref('epan_id')->get('name')==$this->api->website_requested AND ($this->api->auth->model['type'] == 'SuperUser' OR $this->api->auth->model['type'] == 'BackEndUser')){
+				$this->edit_mode = true;
+			}
 
 			// Global Template Setting
 			if(in_array('shared', $this->defaultTemplate())){
 				$current_template = $this->current_website->ref('EpanTemplates')->addCondition('is_current',true)->tryLoadAny();
 				if($current_template->loaded()){
-					$this->api->exec_plugins('content-fetched',$current_template);
+					if(!$this->edit_mode){
+						$this->api->exec_plugins('content-fetched',$current_template);
+					}
 
 					$content = file_get_contents('templates/default/shared.html');
 					$current_template['content'] = str_replace("{{Content}}", '<?$Content?>', $current_template['content']);
@@ -163,8 +171,6 @@ class Frontend extends ApiFrontend{
 			->_load( 'ui.atk4_notify' )
 			;
 
-			$auth=$this->add( 'BasicAuth' );
-			$auth->setModel( 'Users', 'username', 'password' );
 			if(in_array("shared", $this->defaultTemplate())){
 				$this->template->appendHTML('js_include','<link type="text/css" href="templates/default/css/epan.css" rel="stylesheet" />'."\n");
 			}

@@ -4,8 +4,7 @@ class page_index extends Page {
 	function init(){
 		parent::init();
 
-		if($this->api->auth->isLoggedIn() AND $this->api->auth->model->ref('epan_id')->get('name')==$this->api->website_requested AND ($this->api->auth->model['type'] == 'SuperUser' OR $this->api->auth->model['type'] == 'BackEndUser')){
-			$this->api->edit_mode=true;
+		if($this->api->edit_mode){
 			if($_GET['edit_template']){
 				$this->api->edit_template = true;
 				// Remove div tag arrounf page template and to remove top-page class of the div to avoid repetation
