@@ -44,7 +44,8 @@ class page_index extends Page {
 			$this->api->template->appendHTML('js_include','<link type="text/css" href="templates/default/css/epan.less" rel="stylesheet/less" />'."\n");
 			$this->api->template->appendHTML('js_include','<script src="templates/default/js/less.min.js"></script>'."\n");
 		}else{
-			$this->api->template->appendHTML('js_include','<link type="text/css" href="templates/default/css/epan.css" rel="stylesheet" />'."\n");
+			// Moved to FrontEnd
+			// $this->api->template->appendHTML('js_include','<link type="text/css" href="templates/default/css/epan.css" rel="stylesheet" />'."\n");
 		}
 
 		if($this->api->edit_mode){

@@ -5,7 +5,7 @@ class page_visitorCounterApp_page_owner_main extends page_componentBase_page_own
 		parent::init();
 
 		$config_m= $this->add('visitorCounterApp/Model_Config');
-		$config_m->addCondition('epan_id',$this->api->auth->model->id);
+		$config_m->addCondition('epan_id',$this->api->current_website->id);
 		$config_m->tryLoadAny();
 
 		if(!$config_m->loaded()){

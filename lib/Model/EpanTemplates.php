@@ -7,7 +7,8 @@ class Model_EpanTemplates extends Model_Table {
 
 		$this->hasOne('Epan','epan_id');
 		$this->addField('name');
-		$this->addField('content')->type('text');
+		$this->addField('content')->type('text')->defaultValue('{{Content}}');
+		$this->addField('css')->type('text');
 		$this->addField('is_current')->type('boolean')->defaultValue(false);
 
 		$this->add('dynamic_model/Controller_AutoCreator');

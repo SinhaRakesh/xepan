@@ -8,7 +8,7 @@ class View_VisitorCounterMain extends \View{
 	function init(){
 		parent::init();
 		$config_m=$this->add('visitorCounterApp/Model_Config');
-		$config_m->addCondition('epan_id',$this->api->current_epan->id);
+		$config_m->addCondition('epan_id',$this->api->current_website->id);
 		$config_m->tryLoadAny();
 
 		$this->config = $config_m;
@@ -16,7 +16,7 @@ class View_VisitorCounterMain extends \View{
 			$this->template->tryDel('total_visit_visible');
 		else{
 			$total_visit = $this->add('visitorCounterApp/Model_Visits');
-			$total_visit->addCondition('epan_id',$this->api->current_epan->id);
+			$total_visit->addCondition('epan_id',$this->api->current_website->id);
 			$total_visit_count = $total_visit->count()->getOne() + $config_m['start_number'];
 			$this->template->trySet('total_visit',$total_visit_count);
 		}
@@ -25,7 +25,7 @@ class View_VisitorCounterMain extends \View{
 		else{
 			$yealry_visit = $this->add('visitorCounterApp/Model_Visits');
 			$yealry_visit->addExpression('yy')->set('YEAR(name)');
-			$yealry_visit->addCondition('epan_id',$this->api->current_epan->id);
+			$yealry_visit->addCondition('epan_id',$this->api->current_website->id);
 			$yealry_visit->addCondition('yy',date('Y'));
 			$yealry_visit_count = $yealry_visit->count()->getOne();
 			$this->template->trySet('yealry_visit',$yealry_visit_count);
@@ -35,7 +35,7 @@ class View_VisitorCounterMain extends \View{
 		else{
 			$monthly_visit = $this->add('visitorCounterApp/Model_Visits');
 			$monthly_visit->addExpression('ym')->set('DATE_FORMAT(name,"%Y%m")');
-			$monthly_visit->addCondition('epan_id',$this->api->current_epan->id);
+			$monthly_visit->addCondition('epan_id',$this->api->current_website->id);
 			$monthly_visit->addCondition('ym',date('Ym'));
 			$monthly_visit_count = $monthly_visit->count()->getOne() ;
 			$this->template->trySet('monthly_visit',$monthly_visit_count);
@@ -45,7 +45,7 @@ class View_VisitorCounterMain extends \View{
 			$this->template->tryDel('daily_visits_visible');
 		else{
 			$daily_visit = $this->add('visitorCounterApp/Model_Visits');
-			$daily_visit->addCondition('epan_id',$this->api->current_epan->id);
+			$daily_visit->addCondition('epan_id',$this->api->current_website->id);
 			$daily_visit->addCondition('name','like',date('Y-m-d').' %');
 			$daily_visit_count = $daily_visit->count()->getOne();
 			$this->template->trySet('daily_visit',$daily_visit_count);

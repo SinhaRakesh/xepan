@@ -95,6 +95,9 @@ class View_Tool extends \View {
 		// OPTIONS  to be shown on Quick Component options
 		if(file_exists(getcwd().'/epan-components/'.$this->namespace.'/templates/view/'.$this->namespace.'-'.strtolower($drag_html->component_type).'-options.html')){
 			$options = $this->add('componentBase/View_Options',array('namespace'=>$this->namespace,'component_type'=>$drag_html->component_type),'options');
+		}else{
+			// throw new \Exception($this->namespace . " :: " . $drag_html->component_type, 1);
+			
 		}
 		
 		$drag_html->destroy();
