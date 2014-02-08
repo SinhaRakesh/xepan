@@ -55,6 +55,7 @@ class Model_Epan extends Model_Table {
 
 
 		$this->hasMany('EpanPage','epan_id');
+		$this->hasMany('EpanTemplates','epan_id');
 		$this->hasMany('InstalledComponents','epan_id');
 		$this->hasMany('Messages','epan_id');
 		$this->hasMany('Alerts','epan_id');

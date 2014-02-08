@@ -18,6 +18,11 @@ class View_FrontToolBar extends \View{
 			}
 		}
 
+		if($this->api->edit_template){
+			$this->add('templateRegions/View_Tools_MainContentRegion',null,'tools');
+			// $this->add('templateRegions/View_Tools_EditableContentRegion',null,'tools');
+		}
+
 		// Get All INSTALLED Modules and Applications
 		$installed_components  = $this->api->current_website->ref('InstalledComponents');
 		// TODO DELETE FOLLOWING LINE

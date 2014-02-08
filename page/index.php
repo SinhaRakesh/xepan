@@ -5,8 +5,15 @@ class page_index extends Page {
 		parent::init();
 
 		if($this->api->auth->isLoggedIn() AND $this->api->auth->model->ref('epan_id')->get('name')==$this->api->website_requested AND ($this->api->auth->model['type'] == 'SuperUser' OR $this->api->auth->model['type'] == 'BackEndUser')){
-			$this->api->edit_mode=true;			
-			$this->api->add('editingToolbar/View_FrontToolBar');
+			$this->api->edit_mode=true;
+			if($_GET['edit_template']){
+				$this->api->edit_template = true;
+				// Remove div tag arrounf page template and to remove top-page class of the div to avoid repetation
+				$this->template->loadTemplateFromString('<?$Content?>');
+				
+				$this->js()->_load('edit_template');
+			}
+			$this->api->add('editingToolbar/View_FrontToolBar',null,'editor');
 		}
 	}
 	function setModel($page_model){

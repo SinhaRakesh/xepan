@@ -18,13 +18,18 @@
 		<![endif]-->
 		<script type="text/javascript">
 			$(function(){
+				edit_template=undefined;
 				<?$document_ready?>
 			});
 		</script>
 	</head>
-	<body style='<?$style?>'>
-		<?$Menu?>
-		<?$Content?>
+	<body style='<?$style?>' class='<?$class?> ' component_type='Body '>
+		<div id='epan-content-wrapper' class='epan-sortable-component ' component_type='Web Page'>
+			<?$Content?>
+		</div>
+		<div class='epan-editor-shared-div'>
+			<?$editor?>
+		</div>
 		<div id="atk-growl-holder" class="atk-growl"></div>
 	</body>
 	<style type="text/css">

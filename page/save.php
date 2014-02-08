@@ -3,7 +3,11 @@
 class page_save extends Page {
 
 	function init() {
-		parent::init();		
+		parent::init();	
+
+		if(!$this->api->auth->isLoggedIn())	{
+			$this->js()->univ()->errorMessage('You Are Not Logged In')->execute();
+		}
 		
 		if ( $_POST['length'] != strlen( $_POST['body_html'] ) ) {
 			$this->js()->univ()->successMessage( 'Length send ' . $_POST['length'] . " AND Length calculated again is " . strlen( $_POST['body_html'] ) )->execute();

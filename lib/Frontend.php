@@ -33,6 +33,9 @@ class Frontend extends ApiFrontend{
 	 */
 	public $edit_mode=false;
 
+	// TODO Comments
+	public $edit_template = false;
+
 	/**
 	 * $epan_plugins contains all plugins associated with this website/epan
 	 * loaded in frontend
@@ -45,12 +48,6 @@ class Frontend extends ApiFrontend{
 		parent::init();
 
 		// A lot of the functionality in Agile Toolkit requires jUI
-			$this->add( 'jUI' );
-
-			$this->js()
-			->_load( 'atk4_univ' )
-			->_load( 'ui.atk4_notify' )
-			;
 
 		if ( !$this->getConfig( 'installed' ) ) {
 			// Not installed and installation required
@@ -142,6 +139,26 @@ class Frontend extends ApiFrontend{
 
 				$this->load_plugins();
 			}
+
+			// Global Template Setting
+			if(in_array('shared', $this->defaultTemplate())){
+				$current_template = $this->current_website->ref('EpanTemplates')->addCondition('is_current',true)->tryLoadAny();
+				if($current_template->loaded()){
+					$content = file_get_contents('templates/default/shared.html');
+					$current_template['content'] = str_replace("{{Content}}", '<?$Content?>', $current_template['content']);
+					$content = str_replace('<?$Content?>', $current_template['content'], $content);
+					$this->template->loadTemplateFromString($content);
+				}
+				
+			}
+
+			// A lot of the functionality in Agile Toolkit requires jUI
+			$this->add( 'jUI' );
+
+			$this->js()
+			->_load( 'atk4_univ' )
+			->_load( 'ui.atk4_notify' )
+			;
 
 			$auth=$this->add( 'BasicAuth' );
 			$auth->setModel( 'Users', 'username', 'password' );
