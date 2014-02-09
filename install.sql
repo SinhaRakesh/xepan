@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: ttt
+-- Host: localhost    Database: xep
 -- ------------------------------------------------------
--- Server version 5.5.28-0ubuntu0.12.04.2
+-- Server version	5.5.28-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -213,7 +213,7 @@ CREATE TABLE `epan_components_marketplace` (
   `has_plugins` tinyint(1) DEFAULT NULL,
   `has_live_edit_app_page` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +241,7 @@ CREATE TABLE `epan_installed_components` (
   `params` varchar(255) DEFAULT NULL,
   `installed_on` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +250,7 @@ CREATE TABLE `epan_installed_components` (
 
 LOCK TABLES `epan_installed_components` WRITE;
 /*!40000 ALTER TABLE `epan_installed_components` DISABLE KEYS */;
-INSERT INTO `epan_installed_components` VALUES (1,1,13,1,NULL,'2014-01-26'),(2,1,8,1,NULL,'2014-01-27');
+INSERT INTO `epan_installed_components` VALUES (1,1,13,1,NULL,'2014-01-26'),(2,1,8,1,NULL,'2014-01-27'),(5,1,27,1,NULL,'2014-02-06'),(6,1,10,1,NULL,'2014-02-08'),(9,1,4,1,NULL,'2014-02-09'),(11,1,21,1,NULL,'2014-02-09'),(12,1,22,1,NULL,'2014-02-09');
 /*!40000 ALTER TABLE `epan_installed_components` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,9 +274,12 @@ CREATE TABLE `epan_page` (
   `body_attributes` text,
   `created_on` datetime DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
+  `access_level` varchar(255) DEFAULT NULL,
+  `template_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_epan_page_epan1` (`epan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  KEY `fk_epan_page_epan1` (`epan_id`),
+  KEY `fk_template_id` (`template_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +288,7 @@ CREATE TABLE `epan_page` (
 
 LOCK TABLES `epan_page` WRITE;
 /*!40000 ALTER TABLE `epan_page` DISABLE KEYS */;
-INSERT INTO `epan_page` VALUES (1,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.','\n  \n  \n  \n  \n  \n  \n  \n\n\n\n\n\n\n\n\n','cursor: auto;',NULL,'2014-01-31 22:03:22');
+INSERT INTO `epan_page` VALUES (1,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.',NULL,'cursor: auto;',NULL,'2014-02-09 14:36:48','public',1);
 /*!40000 ALTER TABLE `epan_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -321,6 +324,35 @@ LOCK TABLES `epan_page_snapshots` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `epan_templates`
+--
+
+DROP TABLE IF EXISTS `epan_templates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `epan_templates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `epan_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `content` text,
+  `is_current` tinyint(1) DEFAULT NULL,
+  `css` text,
+  PRIMARY KEY (`id`),
+  KEY `fk_epan_id` (`epan_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `epan_templates`
+--
+
+LOCK TABLES `epan_templates` WRITE;
+/*!40000 ALTER TABLE `epan_templates` DISABLE KEYS */;
+INSERT INTO `epan_templates` VALUES (1,1,'default','{{Content}}',1,NULL);
+/*!40000 ALTER TABLE `epan_templates` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `messages`
 --
 
@@ -337,7 +369,7 @@ CREATE TABLE `messages` (
   `sender_signature` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_epan_id` (`epan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,7 +378,6 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (1,16,'demoMessage1','Hi this is for you',NULL,0,'khushi');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -366,7 +397,7 @@ CREATE TABLE `staff` (
   `access_level` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_staff_branche1` (`branch_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -375,7 +406,6 @@ CREATE TABLE `staff` (
 
 LOCK TABLES `staff` WRITE;
 /*!40000 ALTER TABLE `staff` DISABLE KEYS */;
-INSERT INTO `staff` VALUES (1,'Staff1',1,'xadmin','x123',100);
 /*!40000 ALTER TABLE `staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,13 +430,17 @@ CREATE TABLE `users` (
   `last_login_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_epan_id` (`epan_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
 --
 
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `visitorCounterApp_config`
@@ -427,7 +461,7 @@ CREATE TABLE `visitorCounterApp_config` (
   `start_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_epan_id` (`epan_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -436,6 +470,7 @@ CREATE TABLE `visitorCounterApp_config` (
 
 LOCK TABLES `visitorCounterApp_config` WRITE;
 /*!40000 ALTER TABLE `visitorCounterApp_config` DISABLE KEYS */;
+INSERT INTO `visitorCounterApp_config` VALUES (2,1,1,0,0,0,'car','12px','2345');
 /*!40000 ALTER TABLE `visitorCounterApp_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -474,4 +509,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-31 22:40:40
+-- Dump completed on 2014-02-09 15:32:02

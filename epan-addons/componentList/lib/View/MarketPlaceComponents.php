@@ -21,7 +21,7 @@ class View_MarketPlaceComponents extends \CompleteLister {
 		$this->current_row['panel_type'] = $panel_type;
 
 		$check_installed = $this->add('Model_InstalledComponents')
-								->addCondition('epan_id',$this->api->auth->model->id)
+								->addCondition('epan_id',$this->api->current_website->id)
 								->addCondition('component_id',$this->model->id)
 								->setOrder('component_id')
 								->tryLoadAny();

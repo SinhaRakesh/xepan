@@ -20,7 +20,7 @@ class page_savetemplate extends Page {
 		try{
 
 			$content = urldecode($_POST['body_html']);
-			$template = $this->api->current_website->ref('EpanTemplates')->addCondition('is_current',true)->tryLoadAny();
+			$template = $this->add('Model_EpanTemplates')->load($_GET['template_id']);
 			$template['content'] = $content;
 			$template->save();
 		}

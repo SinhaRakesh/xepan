@@ -39,27 +39,7 @@ class page_owner_epansettings extends page_base_owner {
 		}
 		
 		
-		/*$credentials_tab = $tabs->addTab('Your Credentials');
-		$credential_form = $credentials_tab->add('Form');
 		
-		$credential_form->addField('Readonly','username')->set($this->api->auth->model['name']);
-		$credential_form->addField('password','current_password');
-		$credential_form->addField('password','new_password');
-		$credential_form->addField('password','retype_new_password');
-		$credential_form->addSubmit('Update');
-
-		if($credential_form->isSubmitted()){
-			$epan = $this->add('Model_Epan')->load($this->api->auth->model->id);
-			if($epan['password'] != $credential_form['current_password'])
-				$credential_form->displayError('current_password','Current password is not correct');
-
-			if($credential_form['new_password'] != $credential_form['retype_new_password'])
-				$credential_form->displayError('retype_new_password','Passwords do not match');
-
-			$epan['password'] = $credential_form['new_password'];
-			$epan->save();
-			$credential_form->js(null,$credential_form->js()->reload())->univ()->successMessage('Password changed successfully')->execute();
-		}*/
 
 	}
 }

@@ -40,8 +40,11 @@ class View_FrontToolBar extends \View{
 		}
 
 		$this->add('componentBase/View_CssOptions',null,'common_css_options')->js(true)->hide();
-		// $this->template->trySet('current_epan_id',$this->api->current_epan->id);
-		// $this->template->trySet('current_epan_page_id',$this->api->current_page->id);
+		$this->template->trySet('website_requested',$this->api->website_requested);
+		$this->template->trySet('current_website_id',$this->api->current_website->id);
+		$this->template->trySet('current_page_name',$this->api->current_page['name']);
+		$this->template->trySet('current_page_id',$this->api->current_page->id);
+		$this->template->trySet('current_template_id',$this->api->current_page['template_id']);
 	}
 
 	function defaultTemplate(){

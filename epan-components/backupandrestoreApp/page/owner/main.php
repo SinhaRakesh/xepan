@@ -32,9 +32,9 @@ class page_backupandrestoreApp_page_owner_main extends page_componentBase_page_o
 				)));
 		}
 
-		$fileDir = getcwd().'/epans/'.$this->api->auth->model['name'].'/';
+		$fileDir = getcwd().'/epans/'.$this->api->current_website['name'].'/';
 		if(file_exists($fileDir.'backup.zip')){
-			$left->add('View')->setElement('a')->setAttr('href','/epans/'.$this->api->auth->model['name'].'/backup.zip')->set('Download Last Backup');
+			$left->add('View')->setElement('a')->setAttr('href','/epans/'.$this->api->current_website['name'].'/backup.zip')->set('Download Last Backup');
 		}
 
 		$right->add('H3')->set('Restore');
@@ -73,7 +73,7 @@ class page_backupandrestoreApp_page_owner_main extends page_componentBase_page_o
 	function backup($include_snapshots,$include_apps){
 		// Get Epan Details
 		$epan = $this->add('Model_Epan');
-		$epan->addCondition('id',$this->api->auth->model->id);
+		$epan->addCondition('id',$this->api->auth->current_website->id);
 
 		$data=array();
 		foreach ($epan as $epan_array) {
@@ -110,7 +110,7 @@ class page_backupandrestoreApp_page_owner_main extends page_componentBase_page_o
 
 
 
-		$fileDir = getcwd().'/epans/'.$this->api->auth->model['name'].'/';
+		$fileDir = getcwd().'/epans/'.$this->api->current_website['name'].'/';
 		if(file_exists($fileDir.'backup.zip'))
 			unlink($fileDir.'backup.zip');
 
@@ -130,7 +130,7 @@ class page_backupandrestoreApp_page_owner_main extends page_componentBase_page_o
 
 		$tmp_file = $_FILES['backup_file']['tmp_name'];
 
-		$fileDir = getcwd().'/epans/'.$this->api->auth->model['name'].'/';
+		$fileDir = getcwd().'/epans/'.$this->api->current_website['name'].'/';
 		$zipVar = new ZipArchive;
         
         $res = $zipVar->open($tmp_file); 
@@ -160,7 +160,7 @@ class page_backupandrestoreApp_page_owner_main extends page_componentBase_page_o
 		}
 
 		$existing_epan = $this->add('Model_Epan');
-		$existing_epan->load($this->api->auth->model->id);
+		$existing_epan->load($this->api->current_website->id);
 
 
 		foreach ($page = $existing_epan->ref('EpanPage') as $junk) {
@@ -225,7 +225,7 @@ class page_backupandrestoreApp_page_owner_main extends page_componentBase_page_o
 		if(isset($data['apps'])){
 			foreach ($data['apps'] as $ap) {
 				$check_installed = $this->add('Model_InstalledComponents');
-				$check_installed->addCondition('epan_id',$this->api->auth->model->id);			
+				$check_installed->addCondition('epan_id',$this->api->current_website->id);			
 				$check_installed->addCondition('component_id',$ap['component_id']);
 				$check_installed->tryLoadAny();
 				if(!$check_installed->loaded()){
@@ -243,19 +243,19 @@ class page_backupandrestoreApp_page_owner_main extends page_componentBase_page_o
 			return "File Not Found";
 		}
 
-		if(is_dir('/tmp/'.$this->api->auth->model['name']))
-			destroy_dir('/tmp/'.$this->api->auth->model['name']);
+		if(is_dir('/tmp/'.$this->api->current_website['name']))
+			destroy_dir('/tmp/'.$this->api->current_website['name']);
 
 		$zip = new zip();
 		if(!$zip->extractZip($tmp_file,'/tmp')){
 			return "Couldn't Extract";
 		}
 		
-		if(!is_file('/tmp/'.$this->api->auth->model['name'].'/backup.epan')){
+		if(!is_file('/tmp/'.$this->api->current_website['name'].'/backup.epan')){
 			return "backup.epan file not found, This  might not be your own backup";
 		}
 
-		$backup_file = '/tmp/'.$this->api->auth->model['name'].'/backup.epan';
+		$backup_file = '/tmp/'.$this->api->current_website['name'].'/backup.epan';
 		$data = unserialize(file_get_contents($backup_file));
 
 

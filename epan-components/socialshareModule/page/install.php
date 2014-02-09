@@ -5,7 +5,7 @@ class page_socialshareModule_page_install extends page_componentBase_page_instal
 	function init(){
 		parent::init();	
 		$this_component = $this->add('Model_InstalledComponents');
-		$this_component->addCondition('epan_id',$this->api->auth->model->id);
+		$this_component->addCondition('epan_id',$this->api->auth->current_website->id);
 		$this_component->addCondition('component_id',$this->component_marketplace_id);
 
 		$this_component->tryLoadAny();

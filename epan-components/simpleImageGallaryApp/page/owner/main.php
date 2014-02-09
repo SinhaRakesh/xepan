@@ -5,7 +5,7 @@ class page_simpleImageGallaryApp_page_owner_main extends page_componentBase_page
 		// parent::init();
 
 		$my_gallaries = $this->add('simpleImageGallaryApp/Model_Gallaries');
-		$my_gallaries->addCondition('epan_id',$this->api->auth->model->id);
+		$my_gallaries->addCondition('epan_id',$this->api->auth->current_website->id);
 
 
 		$gallary_crud = $this->add('CRUD');

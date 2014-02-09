@@ -22,8 +22,12 @@
 							<i class='glyphicon glyphicon-cog'></i> Page Properties
 						</div>
 						<div class="btn-group dropup">
-							<button id='epan-save-btn' type="button" class="btn btn-success save">
+							<button id='epan-save-btn' type="button" class="btn btn-success save btn-sm">
 								<i class="glyphicon glyphicon-floppy-save"></i> Save</button>
+							<div id='template-btn' class='btn btn-info tempalte btn-sm'>
+							<i class='glyphicon glyphicon-cog'></i> Edit Template
+							</div>
+
 							<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
 							<span class="caret"></span>
 							<span class="sr-only">Toggle Dropdown</span>
@@ -72,6 +76,18 @@
 	</div>
 </div>
 <script type="text/javascript">
+// Providing Some Values To JAVASCRIPT about current editing environment
+
+var website_requested = '<?$website_requested?>';
+var current_website_id = '<?$current_website_id?>';
+var current_page_name = '<?$current_page_name?>';
+var current_page_id = '<?$current_page_id?>';
+var current_template_id = '<?$current_template_id?>';
+
+console.log("template id " + current_template_id);
+
+
+
 $('#epan-component-border').click(function(event) {
 	if($('#epan-component-border:checked').size() > 0){
 		$('.epan-component').addClass('component-outline');

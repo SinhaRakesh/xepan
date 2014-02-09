@@ -7,6 +7,8 @@ class Model_EpanPage extends Model_Table {
 		parent::init();
 
 		$this->hasOne('Epan','epan_id');
+		$this->hasOne('EpanTemplates','template_id')
+			->defaultValue($this->add('Model_EpanTemplates')->addCondition('is_current',true)->tryLoadAny()->get('id'));
 		$this->addField('name')->caption('Url'); // Menu name for this page default is 'Home'
 		$this->addField('menu_caption')->caption('Menu')->hint('Leave blank if you don\'t want page in menus'); // Menu name for this page default is 'Home'
 		$this->addField('is_template')->type('boolean')->defaultValue(false);

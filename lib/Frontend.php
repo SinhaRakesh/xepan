@@ -146,11 +146,19 @@ class Frontend extends ApiFrontend{
 				$this->edit_mode = true;
 			}
 
+			$this->add( 'jUI' );
 			// Global Template Setting
 			if(in_array('shared', $this->defaultTemplate())){
-				$current_template = $this->current_website->ref('EpanTemplates')->addCondition('is_current',true)->tryLoadAny();
+				if($_GET['edit_template']){
+					$current_template = $this->add('Model_EpanTemplates')->load($_GET['edit_template']);
+				}else{
+					$current_template = $this->current_page->ref('template_id');
+				}
+
 				if($current_template->loaded()){
 					if(!$this->edit_mode){
+						// Remove contenteditable from template strings
+						// In General Page View Mode
 						$this->api->exec_plugins('content-fetched',$current_template);
 					}
 
@@ -163,9 +171,10 @@ class Frontend extends ApiFrontend{
 				
 			}
 
-			// A lot of the functionality in Agile Toolkit requires jUI
+			unset($this->api->jui);
 			$this->add( 'jUI' );
 
+			// A lot of the functionality in Agile Toolkit requires jUI
 			$this->js()
 			->_load( 'atk4_univ' )
 			->_load( 'ui.atk4_notify' )

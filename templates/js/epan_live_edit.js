@@ -306,7 +306,7 @@ $('#epan-save-btn').click(function(event){
     if(edit_template == true){
         html_body = encodeURIComponent($('#epan-content-wrapper').html());
         html_crc = crc32(html_body);
-        calling_page = '?page=savetemplate&cut_page=1';
+        calling_page = '?page=savetemplate&cut_page=1&template_id='+current_template_id;
     }
 
     console.log(document.location);
@@ -350,12 +350,10 @@ $('#epan-save-btn').click(function(event){
 
 
 
-console.log('1');
 $(function(){
 
     // IF NOT EDITING TEMPLATE REMOVE CLASSES FROM TEMPLATES TO MAKE THEM NON EDITABLE
     if(edit_template !== true){
-        console.log('I AM Called ' + edit_template);
         $('.epan-component').not('.top-page').not('.top-page > *').removeClass('epan-component');
         $('.epan-sortable-component').not('.top-page').not('.top-page > *').removeClass('epan-sortable-component');
         $('.editor').not('.top-page').not('.top-page > *').removeClass('editor');
@@ -428,6 +426,15 @@ $(function(){
       $('#dashboard-btn').click(function(event) {
         // TODO check if content is changed
         window.location.replace('?page=owner_dashboard');
+      });
+
+      $('#template-btn').click(function(event) {
+        // console.log(current_template_id);
+        // return;
+            window.location.replace('index.php?edit_template='+current_template_id);
+
+        console.log("after edit"+current_template_id);
+               
       });
 
      $('.components-section').jScrollPane();

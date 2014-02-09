@@ -7,7 +7,7 @@ class Model_Gallaries extends \Model_Table {
 	function init(){
 		parent::init();
 
-		$this->hasOne('Epan','epan_id')->defaultValue($this->api->auth->model->id);
+		$this->hasOne('Epan','epan_id')->defaultValue($this->api->current_website->id);
 		$this->addField('name')->mandatory();
 		$this->hasMany('simpleImageGallaryApp/Images','gallary_id');
 		$this->hasMany('simpleImageGallaryApp/Config','gallary_id');
