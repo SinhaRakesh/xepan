@@ -142,6 +142,10 @@ class page_install extends Page {
                 ->move($epan_info_form->addSeparator('span5'),'before','city')
                 ->now();
 		if($epan_info_form->isSubmitted()){
+			
+			$this->api->current_website = $this->add('Model');
+			$this->api->current_website->id=1;
+
 			$epan_info_form->update();		
 			$config=file_get_contents('config-default.php');
 			$config=str_replace('$config[\'installed\']=false;','$config[\'installed\']=true;',$config);

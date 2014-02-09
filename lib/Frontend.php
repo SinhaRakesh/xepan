@@ -52,6 +52,14 @@ class Frontend extends ApiFrontend{
 		if ( !$this->getConfig( 'installed' ) ) {
 			// Not installed and installation required
 			// TODO : check security issues
+			$this->add( 'jUI' );
+
+			// A lot of the functionality in Agile Toolkit requires jUI
+			$this->js()
+			->_load( 'atk4_univ' )
+			->_load( 'ui.atk4_notify' )
+			;
+			
 			$this->page = 'install';
 		}else {
 			// already installed connect to provided settings and go on
