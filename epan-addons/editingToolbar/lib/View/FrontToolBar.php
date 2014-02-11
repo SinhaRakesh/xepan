@@ -44,7 +44,7 @@ class View_FrontToolBar extends \View{
 		$this->template->trySet('current_website_id',$this->api->current_website->id);
 		$this->template->trySet('current_page_name',$this->api->current_page['name']);
 		$this->template->trySet('current_page_id',$this->api->current_page->id);
-		$this->template->trySet('current_template_id',$this->api->current_page['template_id']);
+		$this->template->trySet('current_template_id',$_GET['edit_template']?:$this->api->current_page['template_id']);
 	}
 
 	function defaultTemplate(){
