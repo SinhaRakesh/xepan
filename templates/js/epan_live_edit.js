@@ -354,10 +354,11 @@ $(function(){
 
     // IF NOT EDITING TEMPLATE REMOVE CLASSES FROM TEMPLATES TO MAKE THEM NON EDITABLE
     if(edit_template !== true){
-        $('.epan-component').not('.top-page').not('.top-page > *').removeClass('epan-component');
-        $('.epan-sortable-component').not('.top-page').not('.top-page > *').removeClass('epan-sortable-component');
-        $('.editor').not('.top-page').not('.top-page > *').removeClass('editor');
-        $('[contenteditable=true]').not('.top-page').not('.top-page > *').attr('contenteditable', 'false');
+        // console.log('I AM Called ' + edit_template);
+        $('.epan-component').not('.top-page, .top-page *').removeClass('epan-component');
+        $('.epan-sortable-component').not('.top-page, .top-page *').removeClass('epan-sortable-component');
+        $('.editor').not('.top-page, .top-page *').removeClass('editor');
+        $('[contenteditable=true]').not('.top-page, .top-page *').attr('contenteditable', 'false');
     }
     
         makeSelectable($('.epan-component'));
