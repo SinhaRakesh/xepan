@@ -1,3 +1,6 @@
 [submodule "epan-components/ecommApp"]
 	path = epan-components/ecommApp
 	url = https://github.com/xavoctechnocratspvtltd/ecommApp.git
+[submodule "epan-components/jobPortalApp"]
+	path = epan-components/jobPortalApp
+	url = https://github.com/xavoctechnocratspvtltd/jobPortalApp.git
