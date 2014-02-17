@@ -354,7 +354,7 @@ $(function(){
 
     // IF NOT EDITING TEMPLATE REMOVE CLASSES FROM TEMPLATES TO MAKE THEM NON EDITABLE
     if(edit_template !== true){
-        // console.log('I AM Called ' + edit_template);
+        console.log('I AM Called ' + edit_template);
         $('.epan-component').not('.top-page, .top-page *').removeClass('epan-component');
         $('.epan-sortable-component').not('.top-page, .top-page *').removeClass('epan-sortable-component');
         $('.editor').not('.top-page, .top-page *').removeClass('editor');

@@ -154,10 +154,15 @@ class Frontend extends ApiFrontend{
 				$this->edit_mode = true;
 			}
 
+			if($_GET['edit_template']){
+				$this->edit_template = true;
+				$this->stickyGET('edit_template');
+			}
+
 			$this->add( 'jUI' );
 			// Global Template Setting
 			if(in_array('shared', $this->defaultTemplate())){
-				if($_GET['edit_template']){
+				if($this->edit_template){
 					$current_template = $this->add('Model_EpanTemplates')->load($_GET['edit_template']);
 				}else{
 					$current_template = $this->current_page->ref('template_id');
@@ -170,11 +175,32 @@ class Frontend extends ApiFrontend{
 						$this->api->exec_plugins('content-fetched',$current_template);
 					}
 
-					$content = file_get_contents('templates/default/shared.html');
-					$current_template['content'] = str_replace("{{Content}}", '<?$Content?>', $current_template['content']);
-					$content = str_replace('<?$Content?>', $current_template['content'], $content);
-					$this->template->loadTemplateFromString($content);
+					$shared_template = file_get_contents('templates/default/shared.html');
+					/*$content .= '<?$Content?>';*/
+					if(!$this->edit_template){
+						include_once (getcwd().'/lib/phpQuery/phpQuery/phpQuery.php');
+						$doc = \phpQuery::newDocument($current_template['content']);
+						
+						$content_divs = $doc['div:contains("{{Content}}")'];
+						$i=0;
+						foreach($content_divs as $temp){
+							$i++;
+						}
+
+						if($i==0){
+							$current_template['content'] .= "{{Content}}";
+						}
+
+
+						$current_template['content'] = str_replace("{{Content}}", '<?$Content?>', $current_template['content']);
+						$shared_template = str_replace('<?$Content?>', $current_template['content'], $shared_template);						
+					}else{
+						$shared_template = str_replace('<?$Content?>', $current_template['content'], $shared_template);
+						$shared_template .= '<?$Content?>';
+					}
+					$this->template->loadTemplateFromString($shared_template);
 					$this->template->trySet('template_css',$current_template['css']);
+					
 				}
 				
 			}

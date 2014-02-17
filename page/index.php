@@ -5,8 +5,7 @@ class page_index extends Page {
 		parent::init();
 
 		if($this->api->edit_mode){
-			if($_GET['edit_template']){
-				$this->api->edit_template = true;
+			if($this->api->edit_template){
 				// Remove div tag arrounf page template and to remove top-page class of the div to avoid repetation
 				$this->template->loadTemplateFromString('<?$Content?>');
 				
@@ -31,7 +30,8 @@ class page_index extends Page {
 	}
 
 	function recursiveRender(){
-		$this->setModel($this->api->current_page);
+		if(!$this->api->edit_template)
+			$this->setModel($this->api->current_page);
 		parent::recursiveRender();
 	}
 
