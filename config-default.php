@@ -2,7 +2,11 @@
 $config['installed']=true;
 
 $config['atk']['base_path']='./atk4/';
+<<<<<<< HEAD
 $config['dsn']='mysql://root:winserver@localhost/hunbun';
+=======
+$config['dsn']='mysql://root:winserver@localhost/jobportal';
+>>>>>>> 4c1b2fb416429e069a13a659db93cf223bb76163
 
 
 $config['url_postfix']='';
