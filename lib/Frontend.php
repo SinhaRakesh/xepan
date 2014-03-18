@@ -139,13 +139,13 @@ class Frontend extends ApiFrontend{
 				}
 
 				// MULTISITE CONTROLER
-				$this->add( 'Controller_EpanCMSApp' )->frontEnd();
-				if ( $this->current_website->loaded() )
-					$this->exec_plugins( 'website-loaded', $this->api->current_website );
-				if ( $this->current_page->loaded() )
-					$this->exec_plugins( 'website-page-loaded', $this->api->page_requested );
+				// $this->load_plugins();
+				// $this->add( 'Controller_EpanCMSApp' )->frontEnd();
+				// if ( $this->current_website->loaded() )
+				// 	$this->exec_plugins( 'website-loaded', $this->api->current_website );
+				// if ( $this->current_page->loaded() )
+				// 	$this->exec_plugins( 'website-page-loaded', $this->api->page_requested );
 
-				$this->load_plugins();
 			}
 			$auth=$this->add( 'BasicAuth' );
 			$auth->setModel( 'Users', 'username', 'password' );
@@ -208,6 +208,13 @@ class Frontend extends ApiFrontend{
 			unset($this->api->jui);
 			$this->add( 'jUI' );
 
+			$this->load_plugins();
+			$this->add( 'Controller_EpanCMSApp' )->frontEnd();
+			if ( $this->current_website->loaded() )
+				$this->exec_plugins( 'website-loaded', $this->api->current_website );
+			if ( $this->current_page->loaded() )
+				$this->exec_plugins( 'website-page-loaded', $this->api->page_requested );
+
 			// A lot of the functionality in Agile Toolkit requires jUI
 			$this->js()
 			->_load( 'atk4_univ' )
@@ -222,6 +229,7 @@ class Frontend extends ApiFrontend{
 
 	function load_plugins() {
 
+		$this->website_plugins_array=array();
 		$this->website_plugins=array();
 
 		$plugins = $this->add( 'Model_InstalledComponents' )
@@ -232,8 +240,9 @@ class Frontend extends ApiFrontend{
 		foreach ( $plugins->getRows() as $plg ) {
 			foreach ( new \DirectoryIterator( getcwd().DIRECTORY_SEPERATOR.'epan-components'.DIRECTORY_SEPERATOR.$plg['namespace'].DIRECTORY_SEPERATOR.'lib'.DIRECTORY_SEPERATOR.'Plugins' ) as $fileInfo ) {
 				if ( $fileInfo->isDot() ) continue;
-				if ( !in_array( $plg_url=$plg['namespace'].'/Plugins_'.str_replace( ".php", "", $fileInfo->getFilename() ), $this->website_plugins ) ) {
+				if ( !in_array( $plg_url=$plg['namespace'].'/Plugins_'.str_replace( ".php", "", $fileInfo->getFilename() ), $this->website_plugins_array ) ) {
 					$p = $this->add( $plg['namespace'].'/Plugins_'.str_replace( ".php", "", $fileInfo->getFilename() ) );
+					$this->website_plugins_array[] = $plg_url;
 					$this->website_plugins[] = $p;
 				}
 			}

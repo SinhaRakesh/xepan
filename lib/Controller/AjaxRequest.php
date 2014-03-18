@@ -59,7 +59,7 @@ class Controller_AjaxRequest extends AbstractController{
 		$request_from = str_replace( 'http://'.$host.'/', '', $ref );
 		$request_array = explode( "/", $request_from );
 
-		preg_match_all( "/(.*)".$this->api->getConfig('url_page_parameter')."=(.*)/", $ref, $request_array );
+		preg_match_all( "/(.*)".$this->api->getConfig('url_page_parameter')."=(.[^&]*)/", $ref, $request_array );
 
 		// echo $ref;
 		// print_r($request_array);
