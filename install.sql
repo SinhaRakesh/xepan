@@ -348,7 +348,7 @@ CREATE TABLE `epan_templates` (
 
 LOCK TABLES `epan_templates` WRITE;
 /*!40000 ALTER TABLE `epan_templates` DISABLE KEYS */;
-INSERT INTO `epan_templates` VALUES (1,1,'default','{{Content}}',1,NULL);
+INSERT INTO `epan_templates` VALUES (1,1,'default','<div component_type="Main Content Area" style="" class="epan-component epan-sortable-component ui-sortable component-outline epan-sortable-extra-padding" id="MainContentArea">{{Content}}</div>',1,NULL);
 /*!40000 ALTER TABLE `epan_templates` ENABLE KEYS */;
 UNLOCK TABLES;
 

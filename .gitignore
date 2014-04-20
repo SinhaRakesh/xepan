@@ -2,3 +2,4 @@ ecomm-components/*
 branch
 system
 *.zip
+config-default.php
