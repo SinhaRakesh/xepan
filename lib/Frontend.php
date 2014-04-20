@@ -49,9 +49,13 @@ class Frontend extends ApiFrontend{
 
 		// A lot of the functionality in Agile Toolkit requires jUI
 
-		if ( !$this->getConfig( 'installed' ) ) {
+		if ( !file_exists('config-default.php') ) {
 			// Not installed and installation required
 			// TODO : check security issues
+			$config['url_postfix']='';
+			$config['url_prefix']='?page=';
+
+			$this->setConfig($config);
 			$this->add( 'jUI' );
 
 			// A lot of the functionality in Agile Toolkit requires jUI

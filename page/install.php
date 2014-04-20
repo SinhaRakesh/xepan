@@ -5,7 +5,7 @@ class page_install extends Page {
 		parent::init();
 		$this->add('View')->setHTML('<h1>Epan CMS :: Installer</h1>')->addClass('jumbotron text-center');
 		$this->api->template->trySet('page_title','Epan :: Installer');
-		if($this->api->getConfig('installed')){
+		if(file_exists('config-default.php') AND $this->api->getConfig('installed')){
 			$this->step4();
 			return;
 		}
