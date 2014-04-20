@@ -421,7 +421,10 @@ $(function(){
 
       });
 
-
+      // Remove component-outline class on load to hide border
+      $('.component-outline').removeClass('component-outline');
+      // Remove easy-drop class on load to hide border
+      $('.component-epan-sortable-extra-padding').removeClass('epan-sortable-extra-padding');
 
 
       $('#dashboard-btn').click(function(event) {
@@ -438,7 +441,7 @@ $(function(){
                
       });
 
-     $('.components-section').jScrollPane();
+     // $('.components-section').jScrollPane();
 
     shortcut.add("Ctrl+Shift+Up",function() {
         if(current_selected_component === undefined) return;

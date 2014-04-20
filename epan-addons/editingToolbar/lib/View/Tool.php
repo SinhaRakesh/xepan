@@ -58,13 +58,19 @@ class View_Tool extends \View {
 	}
 
 	function recursiveRender(){
-		$this->template->set('namespace',$this->namespace);
+		$this->template->trySet('namespace',$this->namespace);
 		$this->template->set('title',$this->title);
 		$this->template->set('class',$this->class);
+		$icon_path='epan-components/'.$this->namespace.'/templates/images/'; 
 		if($this->icon_file == null){
-			$this->icon_file= strtolower(str_replace(" ", "", $this->title))."_icon";
-			$this->template->trySet('icon',$this->icon_file);
+			$this->icon_file= strtolower(str_replace(" ", "", $this->title))."_icon.png";
+			if(!file_exists($icon_path.$this->icon_file)){
+				$icon_path='epan-addons/editingToolbar/templates/images/'; 
+				$this->icon_file='defaultTool.png';
+			}
+
 		}
+		$this->template->trySet('icon',$icon_path.$this->icon_file);
 
 
 		// What to drop by Tool

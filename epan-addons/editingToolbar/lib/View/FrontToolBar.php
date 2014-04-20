@@ -10,11 +10,18 @@ class View_FrontToolBar extends \View{
 		parent::init();
 		
 		// Get All Elements 
+		$block_tabs = $this->add('Tabs',null,'tools');
+
+		// $tool_block = $this->add('View',null,'tools')->addClass('block-title');
+		// $tool_block->add('View')->set('Elements');
 		$market_place = $this->add('Model_MarketPlace')->addCondition('type','element');
+		
+		$element_tab =$block_tabs->addTab('Elements');
+
 		foreach ($market_place->getRows() as $cmp) {
 			foreach (new \DirectoryIterator(getcwd().DIRECTORY_SEPERATOR.'epan-components'.DIRECTORY_SEPERATOR.$cmp['namespace'].DIRECTORY_SEPERATOR.'lib'.DIRECTORY_SEPERATOR.'View'.DIRECTORY_SEPERATOR.'Tools') as $fileInfo) {
 				if($fileInfo->isDot()) continue;
-				$this->add($cmp['namespace'].'/View_Tools_'.trim($fileInfo->getFilename(),'.php'),null,'tools');
+				$element_tab->add($cmp['namespace'].'/View_Tools_'.trim($fileInfo->getFilename(),'.php'));
 			}
 		}
 
@@ -32,10 +39,13 @@ class View_FrontToolBar extends \View{
 		foreach ($installed_components as $junk) {
 			// TODO DELETE FOLLOWING LINE
 			// $cmp = $installed_components->ref('component_id');
+			$component_tab = $block_tabs->addTab($installed_components['name']);
+			// $tool_block = $this->add('View',null,'tools')->addClass('block-title');
+			// $tool_block->add('View')->set($installed_components['name']);
 			foreach (new \DirectoryIterator(getcwd().DIRECTORY_SEPERATOR.'epan-components'.DIRECTORY_SEPERATOR.$installed_components['namespace'].DIRECTORY_SEPERATOR.'lib'.DIRECTORY_SEPERATOR.'View'.DIRECTORY_SEPERATOR.'Tools') as $fileInfo) {
 			    if($fileInfo->isDot()) continue;
 			    // echo $fileInfo->getFilename() . "<br>\n";
-				$this->add($installed_components['namespace'].'/View_Tools_'.trim($fileInfo->getFilename(),'.php'),null,'tools');
+				$component_tab->add($installed_components['namespace'].'/View_Tools_'.trim($fileInfo->getFilename(),'.php'));
 			}
 		}
 

@@ -31,7 +31,7 @@
 }
 .epan-frontend-editing-toolbar {
   width: 100%;
-  height: 110px;
+  height: 150px;
   border-top: 3px solid orange;
   border-bottom: 3px solid orange;
   background-color: white;
@@ -46,12 +46,12 @@
 }
 .epan-frontend-editing-toolbar .components-section {
   margin-left: 20px;
-  height: 75px;
+  height: 120px;
   overflow-x: auto;
   overflow-y: hidden;
 }
 .epan-frontend-editing-toolbar .components-section .tools-panel {
-  width: 1150px;
+  width: auto;
   height: 110px -3;
 }
 .epan-frontend-editing-toolbar .components-section .tools-panel .epan-frontend-editing-tool {
