@@ -71,13 +71,14 @@ function crc32 (str) {
 
 // MAKE SORTABLE ON PAGE 
 $(".epan-sortable-component").sortable(s={
-            revert: true,
+            revert: 100,
             cursor: 'move',
             connectWith: '.epan-sortable-component',
             placeholder: 'epan-place-holder',
             handle: '> .drag-handler',
             tolerance: 'intersect',
             helper: function(event,ui){
+                return $('<div><h1>Dragging ... </h1></div>');
                 $(ui.item).addClass('dragging-shorten');
                 return $(ui).css('opacity',0.3);
             },
@@ -354,7 +355,7 @@ $(function(){
 
     // IF NOT EDITING TEMPLATE REMOVE CLASSES FROM TEMPLATES TO MAKE THEM NON EDITABLE
     if(edit_template !== true){
-        console.log('I AM Called ' + edit_template);
+        console.log('Template Editing Disabled');
         $('.epan-component').not('.top-page, .top-page *').removeClass('epan-component');
         $('.epan-sortable-component').not('.top-page, .top-page *').removeClass('epan-sortable-component');
         $('.editor').not('.top-page, .top-page *').removeClass('editor');
@@ -424,7 +425,7 @@ $(function(){
       // Remove component-outline class on load to hide border
       $('.component-outline').removeClass('component-outline');
       // Remove easy-drop class on load to hide border
-      $('.component-epan-sortable-extra-padding').removeClass('epan-sortable-extra-padding');
+      $('.epan-sortable-extra-padding').removeClass('epan-sortable-extra-padding');
 
 
       $('#dashboard-btn').click(function(event) {

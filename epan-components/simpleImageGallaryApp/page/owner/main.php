@@ -1,17 +1,17 @@
 <?php
 
 class page_simpleImageGallaryApp_page_owner_main extends page_componentBase_page_owner_main {
-	function page_index(){
+	function initMainPage(){
 		// parent::init();
 
 		$my_gallaries = $this->add('simpleImageGallaryApp/Model_Gallaries');
-		$my_gallaries->addCondition('epan_id',$this->api->auth->current_website->id);
+		$my_gallaries->addCondition('epan_id',$this->api->current_website->id);
 
 
 		$gallary_crud = $this->add('CRUD');
 		$gallary_crud->setModel($my_gallaries);
 
-		$gallary_crud->addRef('simpleImageGallaryApp/Images',array('label'=>'Images'));
+		// $gallary_crud->addRef('simpleImageGallaryApp/Images',array('label'=>'Images'));
 		if($g=$gallary_crud->grid){
 			$g->controller->importField('id');
 			$g->addColumn('Expander','config');

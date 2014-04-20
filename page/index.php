@@ -8,8 +8,8 @@ class page_index extends Page {
 			if($this->api->edit_template){
 				// Remove div tag arrounf page template and to remove top-page class of the div to avoid repetation
 				$this->template->loadTemplateFromString('<?$Content?>');
-				
-				$this->js()->_load('edit_template');
+				$this->api->template->set('edit_template','true');
+				// $this->js()->_load('edit_template');
 			}
 			$this->api->add('editingToolbar/View_FrontToolBar',null,'editor');
 		}
