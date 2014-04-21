@@ -164,6 +164,8 @@ class Frontend extends ApiFrontend{
 				$this->stickyGET('edit_template');
 			}
 
+			$this->load_plugins();
+
 			$this->add( 'jUI' );
 			// Global Template Setting
 			if(in_array('shared', $this->defaultTemplate())){
@@ -174,10 +176,11 @@ class Frontend extends ApiFrontend{
 				}
 
 				if($current_template->loaded()){
-					if(!$this->edit_mode){
+					if(!$this->edit_template){
 						// Remove contenteditable from template strings
 						// In General Page View Mode
 						$this->api->exec_plugins('content-fetched',$current_template);
+						
 					}
 
 					$shared_template = file_get_contents('templates/default/shared.html');
@@ -213,7 +216,6 @@ class Frontend extends ApiFrontend{
 			unset($this->api->jui);
 			$this->add( 'jUI' );
 
-			$this->load_plugins();
 			$this->add( 'Controller_EpanCMSApp' )->frontEnd();
 			if ( $this->current_website->loaded() )
 				$this->exec_plugins( 'website-loaded', $this->api->current_website );
@@ -265,7 +267,7 @@ class Frontend extends ApiFrontend{
 		//  throw $this->exception("Plugins Not loaded");
 
 		foreach ( $this->website_plugins as $p ) {
-			// echo $event_hook. "<br/>";
+			// echo $event_hook. " on ". $p ."<br/>";
 			$p->hook( $event_hook, $param_array );
 		}
 		return;

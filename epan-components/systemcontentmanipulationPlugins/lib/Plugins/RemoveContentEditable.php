@@ -11,7 +11,7 @@ class Plugins_RemoveContentEditable extends \componentBase\Plugin{
 	}
 
 	function outputFetched($obj,&$page){
-		if(!$this->api->edit_mode){
+		if(!$this->api->edit_mode){			
 			$page['content'] = str_replace('contenteditable="true"', 'contenteditable="false"', $page['content']);	
 		}		
 	}

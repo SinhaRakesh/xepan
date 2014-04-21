@@ -26,7 +26,7 @@ class View_FrontToolBar extends \View{
 		}
 
 		if($this->api->edit_template){
-			$this->add('templateRegions/View_Tools_MainContentRegion',null,'tools');
+			$element_tab->add('templateRegions/View_Tools_MainContentRegion');
 			// $this->add('templateRegions/View_Tools_EditableContentRegion',null,'tools');
 		}
 
