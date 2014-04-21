@@ -76,11 +76,11 @@ $(".epan-sortable-component").sortable(s={
             connectWith: '.epan-sortable-component',
             placeholder: 'epan-place-holder',
             handle: '> .drag-handler',
-            tolerance: 'intersect',
+            tolerance: 'pointer',
             helper: function(event,ui){
                 return $('<div><h1>Dragging ... </h1></div>');
-                $(ui.item).addClass('dragging-shorten');
-                return $(ui).css('opacity',0.3);
+                // $(ui.item).addClass('dragging-shorten').children().sorting('disable');
+                // return $(ui).css('opacity',0.3);
             },
             start: function(event,ui){
                 if($(ui.item).hasClass('ui-sortable')){

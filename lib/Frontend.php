@@ -206,15 +206,26 @@ class Frontend extends ApiFrontend{
 						$shared_template = str_replace('<?$Content?>', $current_template['content'], $shared_template);
 						$shared_template .= '<?$Content?>';
 					}
+
+					// Saving since serverside components have been run already 
+					// as plugin and they may have set some js_include ect in shared
+					// But now shared template is about to load from string and 
+					// old includes etc will be lost so ...
+					$old_jui = $this->api->jui;
+					$old_js_include = $this->template->tags['js_include'];
+					// throw new Exception(print_r($old_js_include,true) , 1);
+					
 					$this->template->loadTemplateFromString($shared_template);
+					$this->template->appendHTML('js_include',implode("\n", $old_js_include[0]));
 					$this->template->trySet('template_css',$current_template['css']);
 					
 				}
 				
 			}
 
-			unset($this->api->jui);
-			$this->add( 'jUI' );
+			$this->api->jui  = $old_jui;
+			// unset($this->api->jui);
+			// $this->add( 'jUI' );
 
 			$this->add( 'Controller_EpanCMSApp' )->frontEnd();
 			if ( $this->current_website->loaded() )
