@@ -222,8 +222,8 @@ class Frontend extends ApiFrontend{
 				}
 				
 			}
-
-			$this->api->jui  = $old_jui;
+			if(isset($old_jui))
+				$this->api->jui  = $old_jui;
 			// unset($this->api->jui);
 			// $this->add( 'jUI' );
 

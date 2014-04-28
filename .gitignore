@@ -3,3 +3,4 @@ branch
 system
 *.zip
 config-default.php
+epans/web/*
