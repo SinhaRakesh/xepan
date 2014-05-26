@@ -13,6 +13,10 @@ class page_index extends Page {
 			}
 			$this->api->add('editingToolbar/View_FrontToolBar',null,'editor');
 		}
+		
+		if(!$this->api->edit_template)
+			$this->setModel($this->api->current_page);
+			
 	}
 	function setModel($page_model){
 		$this->api->template->trySet('page_title',$page_model['title']);
@@ -29,11 +33,6 @@ class page_index extends Page {
 		parent::setModel($page_model);
 	}
 
-	function recursiveRender(){
-		if(!$this->api->edit_template)
-			$this->setModel($this->api->current_page);
-		parent::recursiveRender();
-	}
 
 	function render(){
 
