@@ -300,7 +300,11 @@ $('#epan-save-btn').click(function(event){
     var overlay = jQuery('<div id="overlay"> </div>');
     overlay.appendTo(document.body);
 
-    html_body = encodeURIComponent($('.top-page').html());
+    html_body = $('.top-page').clone();
+    $(html_body).find('[data-is-serverside-component=true]').html("");
+    html_body = encodeURIComponent($(html_body).html());
+   
+   
     html_crc = crc32(html_body);
     calling_page = '?page=save&cut_page=1';
 
@@ -309,7 +313,7 @@ $('#epan-save-btn').click(function(event){
         html_crc = crc32(html_body);
         calling_page = '?page=savetemplate&cut_page=1&template_id='+current_template_id;
     }
-
+    
     console.log(document.location);
 
     $.ajax({
