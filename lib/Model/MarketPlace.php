@@ -31,30 +31,42 @@ class Model_MarketPlace extends Model_Table {
 	function beforeSave(){
 		if(!$this['type']) throw $this->exception('Please specify type', 'ValidityCheck')->setField('type');
 
+		$existing_check = $this->add('Model_MarketPlace');
+		$existing_check->tryLoadBy('namespace',$this['namespace']);
+		if($existing_check->loaded())
+			throw $this->exception('Name Space Already Used', 'ValidityCheck')->setField('namespace');
+
+
 		// TODO :: check namespace on server as well...
 		if(file_exists(getcwd().DS.'epan-components'.DS.$this['namespace'])){
 			throw $this->exception('namespace is already in use', 'ValidityCheck')->setField('namespace');
 		}
-
-		// Create Basic Directory Structure
-		// namespace
-		// --lib
-		// ----Model
-		// ----View
-		// ------Tools
-		// --page
-		// ----install.php
-		// ----uninstall.php
-		// ----removecomponent.php
-		// ----owner
-		// ------main.php
-		// --template
-		// ----css
-		// ----js
-		// ----view
-		// ------namespace-XYZ TODO (CHECK AGAIN)
-		 
 		
+		$source=getcwd().DS.'epan-addons'.DS.'componentStructure'.DS.'namespace';
+		$dest=getcwd().DS.'epan-components'.DS.$this['namespace'];
+
+		$this->api->xcopy($source,$dest);
+
+		foreach (
+		  $iterator = new RecursiveIteratorIterator(
+		  new RecursiveDirectoryIterator($dest, RecursiveDirectoryIterator::SKIP_DOTS),
+		  RecursiveIteratorIterator::SELF_FIRST) as $item) {
+		  if ($item->isDir()) {
+		  	continue;
+		  } else {
+		  	// open file $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName()
+		  	// replace {namespace} with $this['namespace']
+		  	// save
+		  	$file =$item;
+			$file_contents = file_get_contents($file);
+			$fh = fopen($file, "w");
+			$file_contents = str_replace('{namespace}',$this['namespace'],$file_contents);
+			fwrite($fh, $file_contents);
+			fclose($fh);
+		  }
+		}
 
 	}
+
+
 }

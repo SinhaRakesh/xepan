@@ -2,6 +2,7 @@
 class page_base_owner extends Page {
 	public $page_heading;
 	public $page_subheading;
+	public $menu;
 	function init(){
 		parent::init();
 
@@ -16,9 +17,8 @@ class page_base_owner extends Page {
 		$this->api->memorize('website_requested',$this->api->current_website['name']);
 		$this->api->load_plugins();
 		if(!$this->api->isAjaxOutput()){
-			$menu = $this->api->add('View_Menu',null,'menu',array('owner/menu'));
+			$this->menu = $this->api->add('View_Menu',null,'menu',array('owner/menu'));
 		}
-		$this->js(true)->_load('developer');
 	}
 
 	function render(){
