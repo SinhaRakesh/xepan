@@ -1,6 +1,6 @@
 <?php
 
-class page_developerZone_page_owner_developer_new extends page_developerZone_page_owner_main {
+class page_developerZone_page_owner_component_new extends page_developerZone_page_owner_main {
 	function init(){
 		parent::init();
 
