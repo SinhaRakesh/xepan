@@ -18,6 +18,7 @@ class page_base_owner extends Page {
 		if(!$this->api->isAjaxOutput()){
 			$menu = $this->api->add('View_Menu',null,'menu',array('owner/menu'));
 		}
+		$this->js(true)->_load('developer');
 	}
 
 	function render(){

@@ -7,12 +7,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <a href="#" onclick="javascript:$.univ().developer_setup();"><i class='fa fa-bar-chart-o'>Menu</i></a>
           <a class="navbar-brand" href="index.php" target='epan_preview'>EPAN Owner Dashboard (Preview)</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav side-nav">
+          <ul id='side_menu' class="nav navbar-nav side-nav">
             <li class="<?$owner_dashboard?>"><a href="?page=owner_dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li class="<?$owner_dashboard?>"><a href="?page=owner_users"><i class="fa fa-dashboard"></i> Users Management</a></li>
             <li class='<?$owner_epanpages?>'><a href="?page=owner_epanpages"><i class="fa fa-desktop"></i> Epan Pages</a></li>
@@ -20,6 +21,7 @@
             <li class='<?$owner_epansettings?>'><a href="?page=owner_epansettings"><i class="fa fa-wrench"></i> Epan General Settings</a></li>
             <li class='<?$owner_installedcomponents?>'><a href="?page=owner_installedcomponents"><i class="fa fa-bar-chart-o"></i> Installed Applications</a></li>
             <li class='<?$owner_searchmarket?>'><a href="?page=owner_applicationrepository"><i class="fa fa-bar-chart-o"></i> Epan App Repository </a></li>
+            <li class='<?$owner_developer?>'><a href="?page=owner_developer"><i class="fa fa-bar-chart-o"></i> Epan App Developer </a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right navbar-user">
