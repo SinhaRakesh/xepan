@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: xep
+-- Host: localhost    Database: xepv1
 -- ------------------------------------------------------
 -- Server version	5.5.28-0ubuntu0.12.04.2
 
@@ -213,7 +213,7 @@ CREATE TABLE `epan_components_marketplace` (
   `has_plugins` tinyint(1) DEFAULT NULL,
   `has_live_edit_app_page` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,7 +222,7 @@ CREATE TABLE `epan_components_marketplace` (
 
 LOCK TABLES `epan_components_marketplace` WRITE;
 /*!40000 ALTER TABLE `epan_components_marketplace` DISABLE KEYS */;
-INSERT INTO `epan_components_marketplace` VALUES (1,'Image',1,'50',NULL,NULL,'imageElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(2,'RowColumn',0,'0','3','','rowColumnElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(4,'SlideShow',0,'0','5','','slideshowModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(6,'Text',0,'0',NULL,NULL,'textElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(7,'Title',1,'0',NULL,NULL,'titleElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(8,'EnquiryForm',1,'0','',NULL,'enquiryformModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(10,'MenuBar',0,'0','11','','menubarModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(13,'SystemContentManipulations',1,'0',NULL,NULL,'systemcontentmanipulationPlugins','plugins',1,'output-fetched',NULL,1,NULL,NULL,1,NULL),(12,'Container',0,'0','','','containerElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(16,'SocialShare',NULL,NULL,NULL,NULL,'socialshareModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(20,'Backup And Restore App',NULL,NULL,NULL,NULL,'backupandrestoreApp','application',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(21,'Simple Image Gallary App',NULL,NULL,NULL,NULL,'simpleImageGallaryApp','application',0,NULL,'bla bla bla',0,1,0,0,0),(22,'Visitor Counter',NULL,NULL,NULL,NULL,'visitorCounterApp','application',0,'epan-hit','sdfsd',0,1,0,0,0),(26,'User Login',NULL,NULL,NULL,NULL,'userLoginElement','element',1,NULL,NULL,0,1,NULL,NULL,NULL);
+INSERT INTO `epan_components_marketplace` VALUES (1,'Image',1,'50',NULL,NULL,'imageElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(2,'RowColumn',0,'0','3','','rowColumnElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(4,'SlideShow',0,'0','5','','slideshowModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(6,'Text',0,'0',NULL,NULL,'textElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(7,'Title',1,'0',NULL,NULL,'titleElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(8,'EnquiryForm',1,'0','',NULL,'enquiryformModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(10,'MenuBar',0,'0','11','','menubarModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(13,'SystemContentManipulations',1,'0',NULL,NULL,'systemcontentmanipulationPlugins','plugins',1,'output-fetched',NULL,1,NULL,NULL,1,NULL),(12,'Container',0,'0','','','containerElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(16,'SocialShare',NULL,NULL,NULL,NULL,'socialshareModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(20,'Backup And Restore App',NULL,NULL,NULL,NULL,'backupandrestoreApp','application',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(21,'Simple Image Gallary App',NULL,NULL,NULL,NULL,'simpleImageGallaryApp','application',0,NULL,'bla bla bla',0,1,0,0,0),(22,'Visitor Counter',NULL,NULL,NULL,NULL,'visitorCounterApp','application',0,'epan-hit','sdfsd',0,1,0,0,0),(26,'User Login',NULL,NULL,NULL,NULL,'userLoginElement','element',1,NULL,NULL,0,1,NULL,NULL,NULL),(34,'Developer Zone',0,NULL,NULL,NULL,'developerZone','application',0,NULL,NULL,1,0,0,0,0);
 /*!40000 ALTER TABLE `epan_components_marketplace` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +241,7 @@ CREATE TABLE `epan_installed_components` (
   `params` varchar(255) DEFAULT NULL,
   `installed_on` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +250,7 @@ CREATE TABLE `epan_installed_components` (
 
 LOCK TABLES `epan_installed_components` WRITE;
 /*!40000 ALTER TABLE `epan_installed_components` DISABLE KEYS */;
-INSERT INTO `epan_installed_components` VALUES (1,1,13,1,NULL,'2014-01-26'),(2,1,8,1,NULL,'2014-01-27'),(5,1,27,1,NULL,'2014-02-06'),(6,1,10,1,NULL,'2014-02-08'),(9,1,4,1,NULL,'2014-02-09'),(11,1,21,1,NULL,'2014-02-09'),(12,1,22,1,NULL,'2014-02-09');
+INSERT INTO `epan_installed_components` VALUES (1,1,13,1,NULL,'2014-01-26'),(2,1,8,1,NULL,'2014-01-27'),(5,1,27,1,NULL,'2014-02-06'),(6,1,10,1,NULL,'2014-02-08'),(9,1,4,1,NULL,'2014-02-09'),(11,1,21,1,NULL,'2014-02-09'),(12,1,22,1,NULL,'2014-02-09'),(13,1,34,1,NULL,'2014-05-28');
 /*!40000 ALTER TABLE `epan_installed_components` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +288,7 @@ CREATE TABLE `epan_page` (
 
 LOCK TABLES `epan_page` WRITE;
 /*!40000 ALTER TABLE `epan_page` DISABLE KEYS */;
-INSERT INTO `epan_page` VALUES (1,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.',NULL,'cursor: auto;',NULL,'2014-02-09 14:36:48','public',1);
+INSERT INTO `epan_page` VALUES (1,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.',NULL,'cursor: auto;',NULL,'2014-05-27 22:53:23','public',1);
 /*!40000 ALTER TABLE `epan_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,7 +348,7 @@ CREATE TABLE `epan_templates` (
 
 LOCK TABLES `epan_templates` WRITE;
 /*!40000 ALTER TABLE `epan_templates` DISABLE KEYS */;
-INSERT INTO `epan_templates` VALUES (1,1,'default','<div component_type="Main Content Area" style="" class="epan-component epan-sortable-component ui-sortable component-outline epan-sortable-extra-padding" id="MainContentArea">{{Content}}</div>',1,NULL);
+INSERT INTO `epan_templates` VALUES (1,1,'default','<div component_type=\"Main Content Area\" style=\"\" class=\"epan-component epan-sortable-component ui-sortable component-outline epan-sortable-extra-padding\" id=\"MainContentArea\">{{Content}}</div>',1,NULL);
 /*!40000 ALTER TABLE `epan_templates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,7 +430,7 @@ CREATE TABLE `users` (
   `last_login_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_epan_id` (`epan_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -439,6 +439,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,1,'Admin','admin','admin','2014-05-27','SuperUser',NULL,1,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -509,4 +510,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-02-09 15:32:02
+-- Dump completed on 2014-05-28 19:05:48

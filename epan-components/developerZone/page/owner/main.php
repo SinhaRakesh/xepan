@@ -7,6 +7,7 @@ class page_developerZone_page_owner_main extends page_componentBase_page_owner_m
 		$this->api->template->appendHTML('js_include','<script src="epan-components/developerZone/templates/js/developerZone-base.js"></script>'."\n");
 		$this->menu->template->tryDel('side_menu');
 		$this->api->template->tryDel('wrapper');
+		$this->toolbar->addButton( 'Developer Home' )->js( 'click', $this->js()->univ()->redirect( $this->api->url('developerZone_page_owner_main') ) );
 		$this->toolbar->addButton( 'Dashboard' )->js( 'click', $this->js()->univ()->redirect( $this->api->url('owner_dashboard') ) );
 	}
 
