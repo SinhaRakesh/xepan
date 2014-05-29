@@ -61,13 +61,13 @@ class View_AddComponentToRepository extends \View{
 					$marketplace['has_live_edit_app_page']=( strtolower( $config_array['has_live_edit_app_page'] )=='no' )?false:true;
 					$marketplace->save();
 
-
 					// extract uploaded zip file to epan-components
 					if ( !$zip->extractZip( $_FILES['component_file']['tmp_name'], getcwd().DIRECTORY_SEPERATOR. 'epan-components'.DIRECTORY_SEPERATOR. $config_array['namespace'] ) ) {
 						return "Couldn't Extract";
 					}
 
 					// TODO Execute install.sql file IF EXISTS
+					// TODO or execute addcomponentpage etc like removecomponent
 				}
 			}
 		}

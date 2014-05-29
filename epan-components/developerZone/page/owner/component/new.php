@@ -5,6 +5,7 @@ class page_developerZone_page_owner_component_new extends page_developerZone_pag
 		parent::init();
 
 		$app = $this->add('Model_MarketPlace');
+
 		$app->getElement('type')->enum(array('module','application'));
 
 		$form = $this->add('Form');

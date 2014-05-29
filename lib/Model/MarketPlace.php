@@ -23,6 +23,8 @@ class Model_MarketPlace extends Model_Table {
 		$this->addField('has_plugins')->type('boolean')->defaultValue(false);
 		$this->addField('has_live_edit_app_page')->type('boolean')->defaultValue(false);
 
+		$this->hasMany('MarketPlace','component_id');
+
 		$this->addHook('beforeSave',$this);
 
 		$this->add('dynamic_model/Controller_AutoCreator');
