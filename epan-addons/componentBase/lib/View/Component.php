@@ -64,16 +64,6 @@ class View_Component extends \View {
 		parent::initializeTemplate();
 	}
 
-	function init(){
-		parent::init();
-		
-
-		if($this->is_sortable === null)
-			throw $this->exception('Component Not Properly initialized, define a public variable \'is_sortable\'')
-					->addMoreInfo('Component',get_class());
-
-	}
-
 	function recursiveRender(){
 
 		if($this->api->edit_mode){
@@ -107,7 +97,7 @@ class View_Component extends \View {
 	}
 
 	function defaultTemplate(){
-		return array('view/'.$this->namespace.'-'.strtolower($this->component_type));
+		return array('view/'.$this->namespace.'-'.$this->component_type);
 	}
 
 }

@@ -15,6 +15,7 @@ class View_Options extends \View{
 
 		$this->template->trySet('namespace',$this->namespace);
 		$this->template->trySet('component_type',$this->component_type);
+		$this->template->trySet('component_type_name',str_replace("View_Tools_", "", $this->component_type));
 
 	}
 
@@ -27,6 +28,6 @@ class View_Options extends \View{
 		  		'css'=>'templates/css'
 				)
 			)->setParent($l);
-		return array('view/'.$this->namespace.'-'.strtolower($this->component_type).'-options');
+		return array('view/'.$this->namespace.'-'.str_replace("View_Tools_", "", $this->component_type).'-options');
 	}
 }

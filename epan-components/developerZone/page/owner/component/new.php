@@ -15,7 +15,7 @@ class page_developerZone_page_owner_component_new extends page_developerZone_pag
 
 		if($form->isSubmitted()){
 			$form->update();
-			$form->js()->univ()->reload();
+			$form->api->redirect($this->api->url('developerZone_page_owner_component_edit',array('component'=>$form['namespace'])));
 		}
 
 	}

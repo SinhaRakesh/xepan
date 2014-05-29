@@ -32,6 +32,25 @@ class View_Tool extends \View {
 	 */
 	public $drag_html=null;
 
+	/**
+	 * if $is_serverside then do not render provided class view but instead render serverside
+	 * component div with is_serversidecomponent and component-namespace etc attributes
+	 * @var Boolean
+	 */
+	public $is_serverside=null;
+
+	/**
+	 * if $is_sortable then component can get any other comonent dropped in itself 
+	 * @var boolean
+	 */
+	public $is_sortable=null;
+
+	/**
+	 * if $is_resizable component is resiable from front end
+	 * @var boolean
+	 */
+	public $is_resizable=null;
+
 	function init(){
 		parent::init();
 
@@ -39,22 +58,13 @@ class View_Tool extends \View {
 			throw $this->exception('Please define a public variable \'class\' containing Class name of Component to be created by dropping ')
 						->addMoreInfo('for',$this->title);
 
-		$this_class = get_class($this);
-		$namespace_class =explode("\\", $this_class);
-		$this->namespace = $namespace_class[0];
+		if($this->namespace == null)
+			throw $this->exception('Please provide namespace')
+						->addMoreInfo('for',$this->title);
 
-	}
-
-	function defaultTemplate(){
-		$l=$this->api->locate('addons',__NAMESPACE__, 'location');
-		$this->api->pathfinder->addLocation(
-			$this->api->locate('addons',__NAMESPACE__),
-			array(
-		  		'template'=>'templates',
-		  		'css'=>'templates/css'
-				)
-			)->setParent($l);
-		return array('view/editingToolbar-tool');
+		if($this->title == null)
+			throw $this->exception('Please provide namespace')
+						->addMoreInfo('for',$this->title);
 	}
 
 	function recursiveRender(){
@@ -74,11 +84,21 @@ class View_Tool extends \View {
 
 
 		// What to drop by Tool
-		if($this->drag_html == null ){
+		// if serverside then serverside view with proper attributes or
+		// html of the required view
+		
+		if($this->is_serverside ){
+			$drag_html = $this->add('View',null,null,array('view/editingToolbar-tool-ssc'));
+			$drag_html->setAttr('data-responsible-namespace',$this->namespace);
+			$drag_html->setAttr('data-responsible-view',$this->class);
+			$drag_html->setAttr('data-is-serverside-component','true');
+
+			$this->drag_html = $drag_html->getHTML();
+		}else{
 			// No Drag HTML defined by tool, lets try to make here
 			$drag_html = $this->add($this->namespace.'/'.$this->class);
 			
-			if($drag_html->is_sortable)
+			if($this->is_sortable)
 				$this->template->trySet('create_sortable','true');
 			else
 				$this->template->trySet('create_sortable','false');
@@ -90,7 +110,7 @@ class View_Tool extends \View {
 				$this->template->trySet('items_cancelled',$drag_html->items_cancelled);
 
 			$drag_html->template->append('attributes','component_namespace="'.$this->namespace .'"');
-			$drag_html->template->append('attributes','component_type="'.$drag_html->component_type.'"');
+			$drag_html->template->append('attributes','component_type="'.$this->class.'"');
 
 
 			$this->drag_html = $drag_html->getHTML();
@@ -99,16 +119,29 @@ class View_Tool extends \View {
 
 
 		// OPTIONS  to be shown on Quick Component options
-		if(file_exists(getcwd().'/epan-components/'.$this->namespace.'/templates/view/'.$this->namespace.'-'.strtolower($drag_html->component_type).'-options.html')){
-			$options = $this->add('componentBase/View_Options',array('namespace'=>$this->namespace,'component_type'=>$drag_html->component_type),'options');
+		if(file_exists($template_file = getcwd().'/epan-components/'.$this->namespace.'/templates/view/'.$this->namespace.'-'.str_replace("View_Tools_", "", $this->class).'-options.html')){
+			$options = $this->add('componentBase/View_Options',array('namespace'=>$this->namespace,'component_type'=>$this->class),'options');
 		}else{
-			// throw new \Exception($this->namespace . " :: " . $drag_html->component_type, 1);
+			throw new \Exception($temp, 1);
 			
 		}
 		
 		$drag_html->destroy();
 
 		parent::recursiveRender();
+	}
+
+
+	function defaultTemplate(){
+		$l=$this->api->locate('addons',__NAMESPACE__, 'location');
+		$this->api->pathfinder->addLocation(
+			$this->api->locate('addons',__NAMESPACE__),
+			array(
+		  		'template'=>'templates',
+		  		'css'=>'templates/css'
+				)
+			)->setParent($l);
+			return array('view/editingToolbar-tool');
 	}
 
 }
