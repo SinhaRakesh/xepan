@@ -1,5 +1,9 @@
 <div id="<?$_name?>" class='epan-css-options' style='display:none'>
 	<h5>Css Options</h5>
+	<!-- <div style='height:530px; overflow:scroll;'> -->
+	
+	<input type='text' id='xepan-option-corner'/>
+
 	<div class="panel-group" id="accordion">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -340,6 +344,7 @@
 		</div>
 		
 		</div> <!-- <div class="panel-group" id="accordion"> -->
+	<!-- </div> -->
 	</div>
 	<script type="text/javascript">
 		padding_unit = 'px';
@@ -347,6 +352,12 @@
 		margin_unit = 'px';
 		is_all_margin_same = false;
 		is_all_border_same = true;
+
+		$('#xepan-option-corner').change(function(event) {
+			$(current_selected_component).uncorner();
+			$(current_selected_component).corner($(this).val());
+		});
+
 		$('#epan-background-color').change(function(){
 			$(current_selected_component).css('background-color', '#'+ $(this).val());
 		});

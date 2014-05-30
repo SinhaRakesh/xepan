@@ -51,6 +51,7 @@ class page_index extends Page {
 			 * Main Live Editor JavaScript File handling All Editor based working
 			 */
 			$this->js()->_load('epan_live_edit');
+			$this->api->template->appendHTML('js_include','<script src="templates/js/jquery.corner.js"></script>'."\n");
 
 			// Add Div to stop being accessed before fully loaded
 			// $this->api->template->appendHTML('Content','<div id="overlay-dark"><H3 id="overlay-dark-message">Wait, Loading ...</h3> </div>');
