@@ -1,19 +1,57 @@
 <div id='<?$_name?>' class='epan-component-options' component_type="<?$component_type?>">
 	<h3><?$component_type_name?></h3>
 
-	<input type='text' value='' id='__COMPONENTID__b' />
-
+	<div class="btn-group">
+		<button type="button" id='xepan-image-option-default' class="btn btn-default">Default</button>
+		<input type="text" id='xepan-image-option-src' class="btn" disabled=true/>
+		<button type="button" id='xepan-image-option-select' class="btn btn-default">Select</button>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				Image Class
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<input type='text' id='xepan-image-option-class'/>
+			</div>
+		</div>
+	</div>
 
 </div>
 <script type="text/javascript">
 // ========== OPTION TO COMPONENT EFFECT ==============
 // 
 // $(your_option_html_element).click(function(event,ui){
-// 		$(current_selection_component).what to do ???
+// 		$(current_selected_component).what to do ???
 // }) 
 
-$('#__COMPONENTID__b').change(function(event) {
-	$(current_selection_component).find('b').text($('#__COMPONENTID__b').val());
+$('#xepan-image-option-default').click(function(event) {
+	$(current_selected_component).find('img').attr('src','logo.png');
+	$('#xepan-image-option-src').val('logo.png');
+});
+
+$('#xepan-image-option-class').change(function(event) {
+	$(current_selected_component).removeClass($(current_selected_component).find('img').attr('data-extra-classes'));
+	$(current_selected_component).find('img').attr('data-extra-classes',$(this).val());
+	$(current_selected_component).find('img').addClass($(this).val());
+});
+
+$('#xepan-image-option-select').click(function(event) {
+	var fm = $('<div/>').dialogelfinder({
+				url : 'elfinder/php/connector.php',
+				lang : 'en',
+				width : 840,
+				destroyOnClose : true,
+				getFileCallback : function(files, fm) {
+					console.log(files.url);
+					$('#xepan-image-option-src').val(files.url);
+					$(current_selected_component).find('img').attr('src',files.url);
+				},
+				commandsOptions : {
+					getfile : {
+						oncomplete : 'close',
+						folders : true
+					}
+				}
+			}).dialogelfinder('instance');
 });
 
 var <?$component_type?>_options = {
@@ -21,8 +59,8 @@ var <?$component_type?>_options = {
 		// ===== THIS CODE RUNS EVERY TIME YOU DOUBLE CLICK YOUR COMPONENT
 		// TO TAKE VALUES FROM COMPONENT AND FILL OPTIONS
 		// 
-		// $(your_option_html_element).text($(current_selecte_component).css('border'));
-		$('#__COMPONENTID__b').val($(current_selecte_component).find('b').text());
+		// $(your_option_html_element).text($(current_selected_component).css('border'));
+		$('#xepan-image-option-src').val($(current_selected_component).find('img').attr('src'));
 	}
 }
 </script>

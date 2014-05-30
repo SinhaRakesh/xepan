@@ -4,6 +4,5 @@ class page_owner_dashboard extends page_base_owner {
 	function init() {
 		parent::init();
 		$this->add( 'H1' )->setHTML( strtoupper($this->api->current_website['name']) . " Dashboard <small>One shot view for your Website/Application</small>" );
-		$this->add('Button')->js('click',$this->js()->_load('test')->univ()->test_func_1());
 	}
 }

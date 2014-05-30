@@ -29,24 +29,24 @@ class View_FrontToolBar extends \View{
 			// $this->add('templateRegions/View_Tools_EditableContentRegion',null,'tools');
 		}
 
-		// // Get All INSTALLED Modules and Applications
-		// $installed_components  = $this->api->current_website->ref('InstalledComponents');
-		// // TODO DELETE FOLLOWING LINE
-		// // $componenet_j = $installed_components->join('epan_components_marketplace','component_id');
-		// $installed_components->addCondition('has_toolbar_tools',true);
+		// Get All INSTALLED Modules and Applications
+		$installed_components  = $this->api->current_website->ref('InstalledComponents');
+		// TODO DELETE FOLLOWING LINE
+		// $componenet_j = $installed_components->join('epan_components_marketplace','component_id');
+		$installed_components->addCondition('has_toolbar_tools',true);
 
-		// foreach ($installed_components as $junk) {
-		// 	// TODO DELETE FOLLOWING LINE
-		// 	// $cmp = $installed_components->ref('component_id');
-		// 	$component_tab = $block_tabs->addTab($installed_components['name']);
-		// 	// $tool_block = $this->add('View',null,'tools')->addClass('block-title');
-		// 	// $tool_block->add('View')->set($installed_components['name']);
-		// 	foreach (new \DirectoryIterator(getcwd().DIRECTORY_SEPERATOR.'epan-components'.DIRECTORY_SEPERATOR.$installed_components['namespace'].DIRECTORY_SEPERATOR.'lib'.DIRECTORY_SEPERATOR.'View'.DIRECTORY_SEPERATOR.'Tools') as $fileInfo) {
-		// 	    if($fileInfo->isDot()) continue;
-		// 	    // echo $fileInfo->getFilename() . "<br>\n";
-		// 		$component_tab->add($installed_components['namespace'].'/View_Tools_'.trim($fileInfo->getFilename(),'.php'));
-		// 	}
-		// }
+		foreach ($installed_components as $junk) {
+			// TODO DELETE FOLLOWING LINE
+			// $cmp = $installed_components->ref('component_id');
+			$component_tab = $block_tabs->addTab($installed_components['name']);
+			// $tool_block = $this->add('View',null,'tools')->addClass('block-title');
+			// $tool_block->add('View')->set($installed_components['name']);
+			foreach ($installed_components as $market_place_array) {
+				foreach ($tools = $installed_components->ref('Tools') as $cmp) {
+					$component_tab->add('editingToolbar/View_Tool',array('namespace'=>$installed_components['namespace'],'title'=>$tools['name'],'class'=>'View_Tools_'.str_replace("_", "", $this->api->normalizeName($tools['name'])),'is_serverside'=>$tools['is_serverside'],'is_sortable'=>$tools['is_sortable'],'is_resizable'=>$tools['is_resizable']));
+				}
+			}
+		}
 
 		$this->add('componentBase/View_CssOptions',null,'common_css_options')->js(true)->hide();
 		$this->template->trySet('website_requested',$this->api->website_requested);

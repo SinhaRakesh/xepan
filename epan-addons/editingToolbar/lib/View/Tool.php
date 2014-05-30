@@ -98,8 +98,10 @@ class View_Tool extends \View {
 			// No Drag HTML defined by tool, lets try to make here
 			$drag_html = $this->add($this->namespace.'/'.$this->class);
 			
-			if($this->is_sortable)
+			if($this->is_sortable){
+				$drag_html->template->append('class',' epan-sortable-component ');
 				$this->template->trySet('create_sortable','true');
+			}
 			else
 				$this->template->trySet('create_sortable','false');
 

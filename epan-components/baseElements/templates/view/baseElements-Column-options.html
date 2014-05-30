@@ -1,7 +1,7 @@
 <div id='<?$_name?>' class='epan-component-options' component_type="<?$component_type?>">
 	<h3><?$component_type_name?></h3>
 
-	<input type='text' value='' id='__COMPONENTID__b' />
+	<div type='text' value='' id='column-option-size' ></div>
 
 
 </div>
@@ -9,12 +9,23 @@
 // ========== OPTION TO COMPONENT EFFECT ==============
 // 
 // $(your_option_html_element).click(function(event,ui){
-// 		$(current_selected_component).what to do ???
+// 		$(current_selection_component).what to do ???
 // }) 
 
-$('#__COMPONENTID__b').change(function(event) {
-	$(current_selected_component).find('b').text($('#__COMPONENTID__b').val());
+jQuery(document).ready(function($) {
+	$('#column-option-size').slider({
+		min:1,
+		max:12,
+		slide: function (event, ui) {
+			for (var i = 1; i <= 12; i++) {
+				$(current_selected_component).removeClass('col-md-'+i);		
+			};
+			$(current_selected_component).addClass('col-md-'+ui.value);
+			$(current_selected_component).attr('span',ui.value);
+		} 
+	});
 });
+
 
 var <?$component_type?>_options = {
 	show: function (){
@@ -22,7 +33,7 @@ var <?$component_type?>_options = {
 		// TO TAKE VALUES FROM COMPONENT AND FILL OPTIONS
 		// 
 		// $(your_option_html_element).text($(current_selected_component).css('border'));
-		$('#__COMPONENTID__b').val($(current_selected_component).find('b').text());
+		$('#column-option-size').slider('value',$(current_selected_component).attr('span'));
 	}
 }
 </script>
