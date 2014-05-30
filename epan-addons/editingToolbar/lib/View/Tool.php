@@ -115,7 +115,7 @@ class View_Tool extends \View {
 
 			$this->drag_html = $drag_html->getHTML();
 		}
-		$this->template->trySetHTML('drag_html',$x=str_replace("'", '"', trim(preg_replace('#\R+#', ' ', $this->drag_html))));
+		$this->template->trySetHTML('drag_html',$x=str_replace("'", '"', trim(preg_replace('#\R+#', ' ', str_replace("/s", "\/s", $this->drag_html)))));
 
 
 		// OPTIONS  to be shown on Quick Component options
