@@ -56,6 +56,12 @@ class page_install extends Page {
 			//throw exception it is allready used
 			if($tables_count)
 				$form->js()->univ()->errorMessage('Database allready contains tables, Cannot proceed')->execute();
+			
+			//
+			//install sql file
+			//TODO USE Fopen instead file get content
+			$sql = file_get_contents('install.sql');
+			$this->api->db->dsql($this->api->db->dsql()->expr($sql))->execute();
 
 			//replace values in config-default file
 			//mark installed = true;
@@ -71,11 +77,6 @@ class page_install extends Page {
 				$form->js()->univ()->errorMessage($e->getMessage())->execute();	
 			}
 
-			//
-			//install sql file
-			//TODO USE Fopen instead file get content
-			$sql = file_get_contents('install.sql');
-			$this->api->db->dsql($this->api->db->dsql()->expr($sql))->execute();
 
 			//create owner user 
 			$epan=$this->add('Model_Epan')->tryLoadAny();
