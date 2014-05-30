@@ -3,13 +3,13 @@
 namespace componentBase;
 
 abstract class Plugin extends \View{
-	public $namespace = null;
 
 	function init(){
 		parent::init();
 
-		if($this->namespace === null)
-			throw $this->exception('You must define "namespace" public variable in your plugin');
+		$this_class = get_class($this);
+		$namespace_class =explode("\\", $this_class);
+		$this->namespace = $namespace_class[0];
 
 		$this_plugin = $this->add('Model_MarketPlace')->addCondition('namespace',$this->namespace)->tryLoadAny();
 		
@@ -21,6 +21,4 @@ abstract class Plugin extends \View{
 		}
 
 	}
-
-	abstract function getDefaultParams($new_epan);
 }

@@ -24,6 +24,14 @@ class page_developerZone_page_owner_main extends page_componentBase_page_owner_m
 
 			$grid->setFormatter('namespace','template')->setTemplate('<a href="?page=developerZone_page_owner_component_edit&component=<?$namespace?>"><?$namespace?></a>');
 
+			$grid->addColumn('Button','download');
+
+			if($_GET['download']){
+				$component = $this->add('Model_MarketPlace');
+				$component->load($_GET['download']);
+				$component->download();
+			}
+
 		}
 	}
 

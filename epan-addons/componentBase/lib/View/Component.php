@@ -78,12 +78,7 @@ class View_Component extends \View {
 		  		'css'=>'templates/css',
 		  		'js'=>'templates/js'
 				)
-			)->setParent($l);
-
-			$this->template->append('class','epan-component ');
-			$this->template->append('attributes','component_type="'.$this->component_type.'" ');
-			$this->template->append('attributes','component_namespace="'.$this->namespace.'"');
-		
+			)->setParent($l);		
 			
 			if($this->is_sortable)
 				$this->template->append('class','epan-sortable-component ');
@@ -97,7 +92,10 @@ class View_Component extends \View {
 	}
 
 	function defaultTemplate(){
-		return array('view/'.$this->namespace.'-'.$this->component_type);
+		if(file_exists($file=getcwd().DS.'epan-components'.DS.$this->namespace.DS.'templates'.DS.'view'.DS.$this->namespace.'-'.str_replace("View_Tools_", "",$this->component_type).'.html'))
+			return array('view/'.$this->namespace.'-'.str_replace("View_Tools_", "",$this->component_type));
+		else
+			return parent::defaultTemplate();
 	}
 
 }

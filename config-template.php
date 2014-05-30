@@ -37,3 +37,5 @@ if(!defined('DIRECTORY_SEPERATOR'))
 
 if(!defined('DS'))
 	define('DS',DIRECTORY_SEPERATOR);
+
+$config['xepan']['events']=array('content-fetched');

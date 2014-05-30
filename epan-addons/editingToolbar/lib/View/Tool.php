@@ -92,6 +92,7 @@ class View_Tool extends \View {
 			$drag_html->setAttr('data-responsible-namespace',$this->namespace);
 			$drag_html->setAttr('data-responsible-view',$this->class);
 			$drag_html->setAttr('data-is-serverside-component','true');
+			$drag_html->template->append('class',' epan-component ');
 
 			$this->drag_html = $drag_html->getHTML();
 		}else{
@@ -112,8 +113,8 @@ class View_Tool extends \View {
 				$this->template->trySet('items_cancelled',$drag_html->items_cancelled);
 
 			$drag_html->template->append('attributes','component_namespace="'.$this->namespace .'"');
-			$drag_html->template->append('attributes','component_type="'.$this->class.'"');
-
+			$drag_html->template->append('attributes','component_type="'.str_replace("View_Tools_", "", $this->class).'"');
+			$drag_html->template->append('class','epan-component ');
 
 			$this->drag_html = $drag_html->getHTML();
 		}

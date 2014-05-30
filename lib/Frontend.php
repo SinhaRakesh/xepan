@@ -250,19 +250,24 @@ class Frontend extends ApiFrontend{
 		$this->website_plugins_array=array();
 		$this->website_plugins=array();
 
-		$plugins = $this->add( 'Model_InstalledComponents' )
-		->addCondition( 'epan_id', $this->api->current_website->id )
-		->addCondition( 'has_plugins', true );
-		$marketplace_j = $plugins->join( 'epan_components_marketplace', 'component_id' );
+		$plugins = $this->add( 'Model_Plugins' );
+		$marketplace_j = $plugins->join('epan_components_marketplace','component_id');
+		$installed_j= $marketplace_j->leftJoin('epan_installed_components.component_id');
+		
+		$marketplace_j->addField('namespace');
+		$installed_j->addField('epan_id');
+
+		$plugins->_dsql()->where(
+				$plugins->dsql()->orExpr()
+					->where('epan_id', $this->api->current_website->id )
+					->where($plugins->table.'.is_system', true )
+				);
 
 		foreach ( $plugins->getRows() as $plg ) {
-			foreach ( new \DirectoryIterator( getcwd().DIRECTORY_SEPERATOR.'epan-components'.DIRECTORY_SEPERATOR.$plg['namespace'].DIRECTORY_SEPERATOR.'lib'.DIRECTORY_SEPERATOR.'Plugins' ) as $fileInfo ) {
-				if ( $fileInfo->isDot() ) continue;
-				if ( !in_array( $plg_url=$plg['namespace'].'/Plugins_'.str_replace( ".php", "", $fileInfo->getFilename() ), $this->website_plugins_array ) ) {
-					$p = $this->add( $plg['namespace'].'/Plugins_'.str_replace( ".php", "", $fileInfo->getFilename() ) );
-					$this->website_plugins_array[] = $plg_url;
-					$this->website_plugins[] = $p;
-				}
+			if ( !in_array( $plg_url=$plg['namespace'].'/Plugins_'.$plg['name'], $this->website_plugins_array ) ) {
+				$p = $this->add( $plg['namespace'].'/Plugins_'.$plg['name'] );
+				$this->website_plugins_array[] = $plg_url;
+				$this->website_plugins[] = $p;
 			}
 		}
 	}

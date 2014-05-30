@@ -24,6 +24,7 @@ class Model_MarketPlace extends Model_Table {
 		$this->addField('has_live_edit_app_page')->type('boolean')->defaultValue(false);
 
 		$this->hasMany('Tools','component_id');
+		$this->hasMany('Plugins','component_id');
 
 		$this->addHook('beforeSave',$this);
 
@@ -70,5 +71,8 @@ class Model_MarketPlace extends Model_Table {
 
 	}
 
+	function download(){
+		
+	}
 
 }
