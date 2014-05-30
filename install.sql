@@ -213,7 +213,7 @@ CREATE TABLE `epan_components_marketplace` (
   `has_plugins` tinyint(1) DEFAULT NULL,
   `has_live_edit_app_page` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,8 +222,37 @@ CREATE TABLE `epan_components_marketplace` (
 
 LOCK TABLES `epan_components_marketplace` WRITE;
 /*!40000 ALTER TABLE `epan_components_marketplace` DISABLE KEYS */;
-INSERT INTO `epan_components_marketplace` VALUES (1,'Image',1,'50',NULL,NULL,'imageElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(2,'RowColumn',0,'0','3','','rowColumnElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(4,'SlideShow',0,'0','5','','slideshowModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(6,'Text',0,'0',NULL,NULL,'textElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(7,'Title',1,'0',NULL,NULL,'titleElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(8,'EnquiryForm',1,'0','',NULL,'enquiryformModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(10,'MenuBar',0,'0','11','','menubarModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(13,'SystemContentManipulations',1,'0',NULL,NULL,'systemcontentmanipulationPlugins','plugins',1,'output-fetched',NULL,1,NULL,NULL,1,NULL),(12,'Container',0,'0','','','containerElement','element',1,NULL,NULL,NULL,1,NULL,0,NULL),(16,'SocialShare',NULL,NULL,NULL,NULL,'socialshareModule','module',0,NULL,NULL,NULL,1,NULL,0,NULL),(20,'Backup And Restore App',NULL,NULL,NULL,NULL,'backupandrestoreApp','application',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(21,'Simple Image Gallary App',NULL,NULL,NULL,NULL,'simpleImageGallaryApp','application',0,NULL,'bla bla bla',0,1,0,0,0),(22,'Visitor Counter',NULL,NULL,NULL,NULL,'visitorCounterApp','application',0,'epan-hit','sdfsd',0,1,0,0,0),(26,'User Login',NULL,NULL,NULL,NULL,'userLoginElement','element',1,NULL,NULL,0,1,NULL,NULL,NULL),(34,'Developer Zone',0,NULL,NULL,NULL,'developerZone','application',0,NULL,NULL,1,0,0,0,0);
+INSERT INTO `epan_components_marketplace` VALUES (34,'Developer Zone',0,NULL,NULL,NULL,'developerZone','application',0,NULL,NULL,1,0,0,0,0),(38,'Basic Web Elements',0,NULL,NULL,NULL,'baseElements','element',0,NULL,NULL,1,1,0,0,0);
 /*!40000 ALTER TABLE `epan_components_marketplace` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `epan_components_tools`
+--
+
+DROP TABLE IF EXISTS `epan_components_tools`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `epan_components_tools` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `component_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `is_serverside` tinyint(1) DEFAULT NULL,
+  `is_sortable` tinyint(1) DEFAULT NULL,
+  `is_resizable` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_component_id` (`component_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `epan_components_tools`
+--
+
+LOCK TABLES `epan_components_tools` WRITE;
+/*!40000 ALTER TABLE `epan_components_tools` DISABLE KEYS */;
+INSERT INTO `epan_components_tools` VALUES (20,38,'Image',0,0,0),(19,38,'Text',0,0,0);
+/*!40000 ALTER TABLE `epan_components_tools` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -288,7 +317,7 @@ CREATE TABLE `epan_page` (
 
 LOCK TABLES `epan_page` WRITE;
 /*!40000 ALTER TABLE `epan_page` DISABLE KEYS */;
-INSERT INTO `epan_page` VALUES (1,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.',NULL,'cursor: auto;',NULL,'2014-05-27 22:53:23','public',1);
+INSERT INTO `epan_page` VALUES (1,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.',NULL,'cursor: auto;',NULL,'2014-05-29 23:54:27','public',1);
 /*!40000 ALTER TABLE `epan_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -510,4 +539,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-28 19:05:48
+-- Dump completed on 2014-05-30 15:49:28
