@@ -107,6 +107,10 @@ class View_Tool extends \View {
 			else
 				$this->template->trySet('create_sortable','false');
 
+			if($this->is_resizable){
+				$drag_html->template->append('class',' ui-resizable ');
+			}
+
 			if($drag_html->items_allowed !== null)
 				$this->template->trySet('items_allowed',$drag_html->items_allowed);
 

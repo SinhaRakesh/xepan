@@ -105,7 +105,10 @@ $(".epan-sortable-component").sortable(s = {
             if (create_sortable)
                 $(new_obj).sortable(s); //.disableSelection();
 
+            $(new_obj).find('.epan-sortable-component').sortable(s);
+
             makeSelectable(new_obj);
+            makeSelectable($(new_obj).find('.epan-component'));
 
             if ($('#epan-component-border:checked').size() > 0) {
                 $(new_obj).addClass('component-outline');
@@ -116,7 +119,6 @@ $(".epan-sortable-component").sortable(s = {
 
             if ($(new_obj).hasClass('ui-resizable'))
                 $(new_obj).resizable();
-
 
             // Make drag Handler on mouse Over
             $(new_obj).hover(function(event) {
