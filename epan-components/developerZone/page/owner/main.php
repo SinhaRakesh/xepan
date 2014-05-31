@@ -30,6 +30,7 @@ class page_developerZone_page_owner_main extends page_componentBase_page_owner_m
 				$component = $this->add('Model_MarketPlace');
 				$component->load($_GET['download']);
 				$component->download();
+				$this->js()->univ()->successMessage('ok')->execute();
 			}
 
 		}

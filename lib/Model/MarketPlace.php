@@ -72,7 +72,18 @@ class Model_MarketPlace extends Model_Table {
 	}
 
 	function download(){
+		// Make Db Backup (xml config file ) file
 		
+		$xml = new SimpleXMLElement('<xml/>');
+
+		$xml->addChild('namespace',$this['namespace']);
+		$xml->addChild('type',$this['type']);
+
+		file_put_contents(getcwd().DS.'epan-components'.DS.$this['namespace'].DS.'config.xml', $xml->asXML());
+
+		// Zip file
+		// Download file
+		// delete created zip file
 	}
 
 }
