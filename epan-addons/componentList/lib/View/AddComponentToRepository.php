@@ -38,28 +38,66 @@ class View_AddComponentToRepository extends \View{
 						$this->add( 'View_Error' )->set( 'namespace not defined' );
 						return;
 					}
+
 					// check entry in marketplace if this namespace is already used
 					$existing_namespace = $this->add( 'Model_MarketPlace' );
 					$existing_namespace->tryLoadBy( 'namespace', $config_array['namespace'] );
 					if ( $existing_namespace->loaded() ) {
-						$this->add( 'View_Error' )->set( 'This namespace is already used and application is installed.' );
-						return;
+						if($_POST['replace_existing']){
+							// Remove Existing entries
+							$existing_namespace->ref('Tools')->deleteAll();
+							$existing_namespace->ref('Plugins')->deleteAll();
+							$existing_namespace->ref('InstalledComponents')->deleteAll();
+							$existing_namespace->delete();
+						}else{
+							$this->add( 'View_Error' )->set( 'This namespace is already used and application is installed.' );
+							return;
+						}
 					}
 					// add entry to marketplace table (Model)
+
+					// throw $this->exception('<pre>'.print_r($config_array,true).'</pre>', 'ValidityCheck')->setField('FieldName');
 
 					$marketplace=$this->add( 'Model_MarketPlace' );
 					$marketplace['name']=$config_array['name'];
 					$marketplace['namespace']=$config_array['namespace'];
 					$marketplace['type']=$config_array['type'];
-					$marketplace['is_system']=( strtolower( $config_array['is_system'] )=='no' )?false:true;
+					$marketplace['is_system']=$config_array['is_system'];
 					$marketplace['description']=$config_array['description'];
-					$marketplace['plugin_hooked']=$config_array['plugin_hooked'];
-					$marketplace['default_enabled']=( strtolower( $config_array['default_enabled'] )=='no' )?false:true;
-					$marketplace['has_toolbar_tools']=( strtolower( $config_array['has_toolbar_tools'] )=='no' )?false:true;
-					$marketplace['has_owner_modules']=( strtolower( $config_array['has_owner_modules'] )=='no' )?false:true;
-					$marketplace['has_plugins']=( strtolower( $config_array['has_plugins'] )=='no' )?false:true;
-					$marketplace['has_live_edit_app_page']=( strtolower( $config_array['has_live_edit_app_page'] )=='no' )?false:true;
+					$marketplace['default_enabled']=$config_array['default_enabled'];
+					$marketplace['has_toolbar_tools']=$config_array['has_toolbar_tools'];
+					$marketplace['has_owner_modules']=$config_array['has_owner_modules'];
+					$marketplace['has_plugins']=$config_array['has_plugins'];
+					$marketplace['has_live_edit_app_page']=$config_array['has_live_edit_app_page'];
+					$marketplace['allowed_children']=$config_array['allowed_children'];
+					$marketplace['specific_to']=$config_array['specific_to'];
+					$marketplace->isInstalling = true;
 					$marketplace->save();
+
+
+					foreach ($config_array['Tools']['Tool'] as $tools) {
+						$tool = $this->add('Model_Tools');
+						$tool['component_id'] = $marketplace->id;
+						$tool['name'] = $tools['name'];
+						$tool['is_serverside'] = $tools['is_serverside'];
+						$tool['is_resizable'] = $tools['is_resizable'];
+						$tool['is_sortable'] = $tools['is_sortable'];
+						$tool->isInstalling = true;
+						$tool->save();
+					}
+
+
+					foreach ($config_array['Plugins']['Plugin'] as $plg) {
+						$plg_m = $this->add('Model_Plugins');
+						$plg_m['component_id'] = $marketplace->id;
+						$plg_m['name'] = $plg['name'];
+						$plg_m['event'] = $plg['event'];
+						$plg_m['params'] = $plg['params'];
+						$plg_m['is_system'] = $plg['is_system'];
+						$plg_m->isInstalling = true;
+						$plg_m->save();
+					}
+
 
 					// extract uploaded zip file to epan-components
 					if ( !$zip->extractZip( $_FILES['component_file']['tmp_name'], getcwd().DIRECTORY_SEPERATOR. 'epan-components'.DIRECTORY_SEPERATOR. $config_array['namespace'] ) ) {

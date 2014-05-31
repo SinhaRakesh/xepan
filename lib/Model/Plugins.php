@@ -33,6 +33,13 @@ class Model_Plugins extends Model_Table {
 			throw $this->exception('The Plugin Name for this component is already used', 'ValidityCheck')->setField('name');
 
 
+		if(!$this->isInstalling)
+			$this->createNewFiles();
+
+
+	}
+
+	function createNewFiles(){
 		// Copy tool template files from epan-addons/componentStructure/tool to appropriate locations
 		
 		// Responsible/Rendering class in tool 'View_Tools_'.$this->api->normalizeName($tool['name'])
@@ -52,6 +59,7 @@ class Model_Plugins extends Model_Table {
 		$content = str_replace("{,params}", ', '.$this['params'], $content);
 
 		file_put_contents($new_file, $content);
+
 
 	}
 }
