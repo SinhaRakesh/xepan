@@ -1,5 +1,5 @@
 <?php
-class page_baseElements_page_removecomponent extends page_componentBase_page_removecomponent {
+class page_systemcontentmanipulationPlugins_page_removecomponent extends page_componentBase_page_removecomponent {
 	function init(){
 		parent::init();
 

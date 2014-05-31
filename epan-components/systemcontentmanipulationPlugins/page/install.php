@@ -1,6 +1,6 @@
 <?php
 
-class page_baseElements_page_install extends page_componentBase_page_install {
+class page_systemcontentmanipulationPlugins_page_install extends page_componentBase_page_install {
 	function init(){
 		parent::init();
 
