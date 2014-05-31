@@ -15,7 +15,7 @@ class Model_Tools extends Model_Table {
 
 		$this->addHook('beforeSave',$this);
 
-		$this->add('dynamic_model/Controller_AutoCreator');
+		// $this->add('dynamic_model/Controller_AutoCreator');
 	}
 
 	function beforeSave(){
@@ -34,6 +34,12 @@ class Model_Tools extends Model_Table {
 			throw $this->exception('The Tool Name for this component is already used', 'ValidityCheck')->setField('name');
 
 
+		if(!$this->isInstalling) //Added in AddComponentTorepository View
+			$this->createNewFiles();
+
+	}
+
+	function createNewFiles(){
 		// Copy tool template files from epan-addons/componentStructure/tool to appropriate locations
 		
 		// Responsible/Rendering class in tool 'View_Tools_'.$this->api->normalizeName($tool['name'])
@@ -52,14 +58,16 @@ class Model_Tools extends Model_Table {
 
 		file_put_contents($new_file, $content);
 
-		// Drop template for this tool file copy and rename
-		$new_file = $component_folder.DS.'templates'.DS.'view'.DS.$namespace.'-'.$new_tool_file_name.'.html';
-		copy($source_folder.DS.'tooltemplate.html',$new_file);
 		
 		// Option template for this tool
 		$new_file = $component_folder.DS.'templates'.DS.'view'.DS.$namespace.'-'.$new_tool_file_name.'-options.html';
 		copy($source_folder.DS.'tooloptions.html',$new_file);
 
+		if(!$this['is_serverside']){
+			// Drop template for this tool file copy and rename
+			$new_file = $component_folder.DS.'templates'.DS.'view'.DS.$namespace.'-'.$new_tool_file_name.'.html';
+			copy($source_folder.DS.'tooltemplate.html',$new_file);			
+		}
 
 	}
 
