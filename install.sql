@@ -219,7 +219,7 @@ CREATE TABLE `epan_components_marketplace` (
 
 LOCK TABLES `epan_components_marketplace` WRITE;
 /*!40000 ALTER TABLE `epan_components_marketplace` DISABLE KEYS */;
-INSERT INTO `epan_components_marketplace` VALUES (34,'Developer Zone',NULL,NULL,'developerZone','application',0,NULL,1,0,0,0,0),(51,'Basic Web Elements And Plugins','0','0','baseElements','element',0,'0',1,1,0,1,0);
+INSERT INTO `epan_components_marketplace` VALUES (34,'Developer Zone',NULL,NULL,'developerZone','application',0,NULL,1,0,0,0,0),(51,'Basic Web Elements And Plugins','0','0','baseElements','element',1,'0',1,1,0,1,0);
 /*!40000 ALTER TABLE `epan_components_marketplace` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,7 +305,7 @@ CREATE TABLE `epan_installed_components` (
 
 LOCK TABLES `epan_installed_components` WRITE;
 /*!40000 ALTER TABLE `epan_installed_components` DISABLE KEYS */;
-INSERT INTO `epan_installed_components` VALUES (1,1,13,1,NULL,'2014-01-26'),(2,1,8,1,NULL,'2014-01-27'),(5,1,27,1,NULL,'2014-02-06'),(6,1,10,1,NULL,'2014-02-08'),(9,1,4,1,NULL,'2014-02-09'),(11,1,21,1,NULL,'2014-02-09'),(12,1,22,1,NULL,'2014-02-09'),(13,1,34,1,NULL,'2014-05-28');
+INSERT INTO `epan_installed_components` VALUES (13,1,34,1,NULL,'2014-05-28');
 /*!40000 ALTER TABLE `epan_installed_components` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -557,4 +557,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-31 15:28:15
+-- Dump completed on 2014-05-31 17:06:11
