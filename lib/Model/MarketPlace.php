@@ -2,6 +2,7 @@
 
 class Model_MarketPlace extends Model_Table {
 	var $table= "epan_components_marketplace";
+	public $isInstalling=false;	
 	
 	function init(){
 		parent::init();

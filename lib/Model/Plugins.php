@@ -2,6 +2,8 @@
 
 class Model_Plugins extends Model_Table {
 	var $table= "epan_components_plugins";
+	public $isInstalling=false;
+
 	function init(){
 		parent::init();
 

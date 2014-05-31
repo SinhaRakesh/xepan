@@ -2,6 +2,8 @@
 
 class Model_Tools extends Model_Table {
 	var $table= "epan_components_tools";
+	public $isInstalling=false;
+
 	function init(){
 		parent::init();
 
@@ -40,6 +42,7 @@ class Model_Tools extends Model_Table {
 	}
 
 	function createNewFiles(){
+		$namespace = $this->ref('component_id')->get('namespace');
 		// Copy tool template files from epan-addons/componentStructure/tool to appropriate locations
 		
 		// Responsible/Rendering class in tool 'View_Tools_'.$this->api->normalizeName($tool['name'])

@@ -18,16 +18,19 @@ class View_FrontToolBar extends \View{
 		
 		$element_tab =$block_tabs->addTab('Elements');
 
+
 		foreach ($market_place as $market_place_array) {
-			foreach ($tools = $market_place->ref('Tools') as $cmp) {
+			$tools = $market_place->ref('Tools');
+			
+			if( ! $this->api->edit_template){
+				$tools->addCondition('name','not like','%template%');
+			}
+			
+			foreach ($tools as $cmp) {
 				$element_tab->add('editingToolbar/View_Tool',array('namespace'=>$market_place['namespace'],'title'=>$tools['name'],'class'=>'View_Tools_'.str_replace("_", "", $this->api->normalizeName($tools['name'])),'is_serverside'=>$tools['is_serverside'],'is_sortable'=>$tools['is_sortable'],'is_resizable'=>$tools['is_resizable']));
 			}
 		}
 
-		if($this->api->edit_template){
-			$element_tab->add('templateRegions/View_Tools_MainContentRegion');
-			// $this->add('templateRegions/View_Tools_EditableContentRegion',null,'tools');
-		}
 
 		// Get All INSTALLED Modules and Applications
 		$installed_components  = $this->api->current_website->ref('InstalledComponents');

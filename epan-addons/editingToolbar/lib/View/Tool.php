@@ -75,6 +75,7 @@ class View_Tool extends \View {
 		if($this->icon_file == null){
 			$this->icon_file= strtolower(str_replace(" ", "", $this->title))."_icon.png";
 			if(!file_exists($icon_path.$this->icon_file)){
+				// throw $this->exception($icon_path.$this->icon_file);
 				$icon_path='epan-addons/editingToolbar/templates/images/'; 
 				$this->icon_file='defaultTool.png';
 			}
@@ -125,7 +126,6 @@ class View_Tool extends \View {
 		if(file_exists($template_file = getcwd().'/epan-components/'.$this->namespace.'/templates/view/'.$this->namespace.'-'.str_replace("View_Tools_", "", $this->class).'-options.html')){
 			$options = $this->add('componentBase/View_Options',array('namespace'=>$this->namespace,'component_type'=>str_replace("View_Tools_", "", $this->class)),'options');
 		}else{
-			throw new \Exception($temp, 1);
 			
 		}
 		
