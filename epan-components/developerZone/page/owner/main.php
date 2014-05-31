@@ -26,7 +26,7 @@ class page_developerZone_page_owner_main extends page_componentBase_page_owner_m
 
 			$grid->addColumn('Template','download')->setTemplate('<a href="epan-components/<?$namespace?>/<?$namespace?>.zip" target="_blank">download</a>');
 			$grid->addColumn('Button','create_package');
-			$grid->addColumn('Expander','contribute_to_xepan');
+			// $grid->addColumn('Expander','contribute_to_xepan');
 
 			if($_GET['create_package']){
 				$component = $this->add('Model_MarketPlace');
@@ -43,11 +43,20 @@ class page_developerZone_page_owner_main extends page_componentBase_page_owner_m
 		$component = $this->add('Model_MarketPlace');
 		$component->Load($_GET['epan_components_marketplace_id']);
 
-		$this->add('H3')->set('Provide Your xEpan Developer Credentials');
+		$this->add('H5')->set('Provide Your xEpan Developer Credentials');
 
-		$form=$this->add('Form');
+		$tabs = $this->add('Tabs');
+		$login_tab = $tabs->addTab('Login & Upload');
+		$register_tab = $tabs->addTab('Register');
+
+		$form=$login_tab->add('Form');
 		$form->addField('line','username');
 		$form->addField('password','password');
+		$form->addSubmit('Upload');
+		if($form->isSubmitted()){
+			// Check credentials SSL ???
+			// 
+		}
 	}
 
 	function page_config(){
