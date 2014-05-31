@@ -7,6 +7,7 @@ class Model_EpanPage extends Model_Table {
 		parent::init();
 
 		$this->hasOne('Epan','epan_id');
+		$this->hasOne('EpanPage','parent_page_id')->defaultValue(0);
 		$this->hasOne('EpanTemplates','template_id')
 			->defaultValue($this->add('Model_EpanTemplates')->addCondition('is_current',true)->loadAny()->get('id'));
 		$this->addField('name')->caption('Url'); // Menu name for this page default is 'Home'
@@ -26,6 +27,7 @@ class Model_EpanPage extends Model_Table {
 		$this->addField('access_level')->setValueList(array("public"=>'Public',"registered_user"=>'Registered User',"backend_user"=>'Back End User',"super_user"=>'Super user'))->defaultValue('public')->mandatory(true);
 
 		$this->hasMany('EpanPageSnapshots','epan_page_id');
+		$this->hasMany('EpanPage','parent_page_id');
 
 		$this->addHook('beforeSave',$this);
 		$this->addHook('beforeInsert',$this);
@@ -33,7 +35,7 @@ class Model_EpanPage extends Model_Table {
 		$this->addHook('beforeDelete',$this);
 
 		$this->setOrder('created_on');
-		$this->add('dynamic_model/Controller_AutoCreator');
+		// $this->add('dynamic_model/Controller_AutoCreator');
 	}
 
 	function beforeSave(){
