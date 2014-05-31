@@ -123,7 +123,7 @@ class View_Tool extends \View {
 
 		// OPTIONS  to be shown on Quick Component options
 		if(file_exists($template_file = getcwd().'/epan-components/'.$this->namespace.'/templates/view/'.$this->namespace.'-'.str_replace("View_Tools_", "", $this->class).'-options.html')){
-			$options = $this->add('componentBase/View_Options',array('namespace'=>$this->namespace,'component_type'=>$this->class),'options');
+			$options = $this->add('componentBase/View_Options',array('namespace'=>$this->namespace,'component_type'=>str_replace("View_Tools_", "", $this->class)),'options');
 		}else{
 			throw new \Exception($temp, 1);
 			
