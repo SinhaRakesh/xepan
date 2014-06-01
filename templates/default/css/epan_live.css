@@ -29,6 +29,11 @@
 .component-outline {
   outline: 1px dotted lightgray;
 }
+
+.component-executed {
+  outline: 1px dotted red;
+}
+
 .epan-frontend-editing-toolbar {
   width: 100%;
   height: 150px;

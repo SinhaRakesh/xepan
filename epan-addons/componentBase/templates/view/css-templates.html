@@ -1,0 +1,28 @@
+<div group='lable'>
+	<span class="" style='width:10px; height:10px;'onclick='applyCssTemplate(this);'>Remove</span>
+	<span class="label label-danger" onclick='applyCssTemplate(this);'>Label</span>
+	<span class="label label-default" onclick='applyCssTemplate(this);'>Label</span>
+	<span class="label label-info" onclick='applyCssTemplate(this);'>Label</span>
+</div>
+
+<script type="text/javascript">
+	applyCssTemplate: function applyCssTemplate(obj){
+		var sib;
+		sib = $(obj).siblings();
+		$.each(sib, function(index, val) {
+			var my_classes = $(val).attr('class').split(' ');
+			$.each(my_classes, function(index, val) {
+				$(current_selected_component).removeClass(val);
+			});
+		});
+		$(current_selected_component).addClass($(obj).attr('class'));
+	}
+
+	swapCssTemplateApplied: function swapCssTemplateApplied(obj){
+		if($(obj).parent().hasClass('epan-place-holder'))
+			$(obj).parent().removeClass('epan-place-holder');
+		else
+			$(obj).parent().addClass('epan-place-holder');
+	}
+
+</script>

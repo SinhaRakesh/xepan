@@ -127,8 +127,18 @@ $(".epan-sortable-component").sortable(s = {
                 component_handel = $('<div class=\'drag-handler\'><i class=\'glyphicon glyphicon-move\'></i></div>');
                 $(component_handel).appendTo($(this));
 
-                remove_btn = $('<div class=\'remove_btn\'><i class=\'glyphicon glyphicon-remove\'></i></div>');
+                remove_btn = $('<div class=\'remove_btn\' title=\'' + $(self).attr('component_type') + '\'><i class=\'glyphicon glyphicon-remove\'></i></div>');
                 $(remove_btn).appendTo($(this));
+                $(remove_btn).tooltip();
+                $(remove_btn).hover(function() {
+                    /* Stuff to do when the mouse enters the element */
+                    $(self).addClass('component-executed');
+
+                }, function() {
+                    /* Stuff to do when the mouse leaves the element */
+                    $(self).removeClass('component-executed');
+
+                });
                 $(remove_btn).click(function(event) {
                     remove_element($(self));
                 });
@@ -416,8 +426,9 @@ $(function() {
         component_handel = $('<div class=\'drag-handler\'><i class=\'glyphicon glyphicon-move\'></i></div>');
         $(component_handel).appendTo($(this));
 
-        remove_btn = $('<div class=\'remove_btn\'><i class=\'glyphicon glyphicon-remove\'></i></div>');
+        remove_btn = $('<div class=\'remove_btn\' title=\'' + $(self).attr('component_type') + '\'><i class=\'glyphicon glyphicon-remove\'></i></div>');
         $(remove_btn).appendTo($(this));
+        $(remove_btn).tooltip();
         $(remove_btn).click(function(event) {
             remove_element($(self));
             event.preventDefault();
