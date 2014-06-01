@@ -1,0 +1,65 @@
+<div id='<?$_name?>' class='epan-component-options' component_type="<?$component_type?>">
+	<h3><?$component_type_name?></h3>
+
+	<div class="btn-group">
+		<button type="button" id='extendedImagesImageWithDescription1-edit' class="btn btn-default">Edit Mode</button>
+		<button type="button" id='extendedImagesImageWithDescription1-active' class="btn btn-default">Active Mode</button>
+	</div>
+	<div class="btn-group">
+		<button type="button" id="extendedImagesImageWithDescription1-bottom" class="btn btn-default">Bottom</button>
+		<button type="button" id="extendedImagesImageWithDescription1-right" class="btn btn-default">Right</button>
+		<button type="button" id="extendedImagesImageWithDescription1-top" class="btn btn-default">Top</button>
+		<button type="button" id="extendedImagesImageWithDescription1-left"  class="btn btn-default">Left</button>
+	</div>
+
+</div>
+<script type="text/javascript">
+// ========== OPTION TO COMPONENT EFFECT ==============
+// 
+// $(your_option_html_element).click(function(event,ui){
+// 		$(current_selected_component).what to do ???
+// }) 
+
+$('#extendedImagesImageWithDescription1-bottom').click(function(event) {
+	$(current_selected_component).find('.desc').removeClass('rightslide upslide leftslide');
+});
+
+$('#extendedImagesImageWithDescription1-left').click(function(event) {
+	$(current_selected_component).find('.desc').removeClass('rightslide upslide leftslide');
+	$(current_selected_component).find('.desc').addClass('leftslide');
+});
+
+$('#extendedImagesImageWithDescription1-top').click(function(event) {
+	$(current_selected_component).find('.desc').removeClass('rightslide upslide leftslide');
+	$(current_selected_component).find('.desc').addClass('upslide');
+});
+
+$('#extendedImagesImageWithDescription1-right').click(function(event) {
+	$(current_selected_component).find('.desc').removeClass('rightslide upslide leftslide');
+	$(current_selected_component).find('.desc').addClass('rightslide');
+});
+
+$('#extendedImagesImageWithDescription1-active').click(function(event) {
+	$(current_selected_component).find('.imagepluscontainer-edit').removeClass('imagepluscontainer-edit').addClass('imagepluscontainer');
+});
+
+$('#extendedImagesImageWithDescription1-edit').click(function(event) {
+	$(current_selected_component).find('.imagepluscontainer').removeClass('imagepluscontainer').addClass('imagepluscontainer-edit');
+});
+
+var <?$component_type?>_options = {
+	show: function (){
+		// ===== THIS CODE RUNS EVERY TIME YOU DOUBLE CLICK YOUR COMPONENT
+		// TO TAKE VALUES FROM COMPONENT AND FILL OPTIONS
+		// 
+		// $(your_option_html_element).text($(current_selected_component).css('border'));
+		if($(current_selected_component).find('div:nth-child(1)').hasClass('imagepluscontainer-edit')){
+			$('#extendedImagesImageWithDescription1-active').removeClass('btn-primary')
+			$('#extendedImagesImageWithDescription1-edit').addClass('btn-primary')
+		}else{
+			$('#extendedImagesImageWithDescription1-edit').removeClass('btn-primary')
+			$('#extendedImagesImageWithDescription1-active').addClass('btn-primary')
+		}
+	}
+}
+</script>
