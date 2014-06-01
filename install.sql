@@ -210,7 +210,7 @@ CREATE TABLE `epan_components_marketplace` (
   `has_plugins` tinyint(1) DEFAULT NULL,
   `has_live_edit_app_page` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +219,7 @@ CREATE TABLE `epan_components_marketplace` (
 
 LOCK TABLES `epan_components_marketplace` WRITE;
 /*!40000 ALTER TABLE `epan_components_marketplace` DISABLE KEYS */;
-INSERT INTO `epan_components_marketplace` VALUES (34,'Developer Zone',NULL,NULL,'developerZone','application',0,NULL,1,0,0,0,0),(51,'Basic Web Elements And Plugins','0','0','baseElements','element',1,'0',1,1,0,1,0);
+INSERT INTO `epan_components_marketplace` VALUES (34,'Developer Zone',NULL,NULL,'developerZone','application',0,NULL,1,0,0,0,0),(52,'Pre Defined Layouts',NULL,NULL,'layoutBase','module',0,NULL,1,1,0,0,0),(51,'Basic Web Elements And Plugins','0','0','baseElements','element',1,'0',1,1,0,1,0),(53,'Slide Shows',NULL,NULL,'slideShows','module',0,NULL,1,1,0,0,0);
 /*!40000 ALTER TABLE `epan_components_marketplace` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +268,7 @@ CREATE TABLE `epan_components_tools` (
   `is_resizable` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_component_id` (`component_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +277,7 @@ CREATE TABLE `epan_components_tools` (
 
 LOCK TABLES `epan_components_tools` WRITE;
 /*!40000 ALTER TABLE `epan_components_tools` DISABLE KEYS */;
-INSERT INTO `epan_components_tools` VALUES (45,51,'Column',0,1,0),(44,51,'Row',0,1,0),(43,51,'Container',0,1,0),(42,51,'Image',0,0,0),(41,51,'Title',0,0,0),(40,51,'Text',0,0,0);
+INSERT INTO `epan_components_tools` VALUES (48,52,'Simple Web Page',0,0,0),(47,51,'Template Content Region',0,1,0),(45,51,'Column',0,1,0),(44,51,'Row',0,1,0),(43,51,'Container',0,1,0),(42,51,'Image',0,0,0),(41,51,'Title',0,0,0),(40,51,'Text',0,0,0),(49,53,'BootStrap Carousel',0,0,0);
 /*!40000 ALTER TABLE `epan_components_tools` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +296,7 @@ CREATE TABLE `epan_installed_components` (
   `params` varchar(255) DEFAULT NULL,
   `installed_on` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,7 +305,7 @@ CREATE TABLE `epan_installed_components` (
 
 LOCK TABLES `epan_installed_components` WRITE;
 /*!40000 ALTER TABLE `epan_installed_components` DISABLE KEYS */;
-INSERT INTO `epan_installed_components` VALUES (13,1,34,1,NULL,'2014-05-28');
+INSERT INTO `epan_installed_components` VALUES (13,1,34,1,NULL,'2014-05-28'),(14,1,52,1,NULL,'2014-05-31'),(15,1,53,1,NULL,'2014-06-01');
 /*!40000 ALTER TABLE `epan_installed_components` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,7 +344,7 @@ CREATE TABLE `epan_page` (
 
 LOCK TABLES `epan_page` WRITE;
 /*!40000 ALTER TABLE `epan_page` DISABLE KEYS */;
-INSERT INTO `epan_page` VALUES (1,0,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.','\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n','cursor: auto;',NULL,'2014-05-30 23:15:41','public',1);
+INSERT INTO `epan_page` VALUES (1,0,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.','','cursor: move; overflow: auto;',NULL,'2014-06-01 19:31:50','public',1);
 /*!40000 ALTER TABLE `epan_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,7 +404,7 @@ CREATE TABLE `epan_templates` (
 
 LOCK TABLES `epan_templates` WRITE;
 /*!40000 ALTER TABLE `epan_templates` DISABLE KEYS */;
-INSERT INTO `epan_templates` VALUES (1,1,'default','<div component_type=\"Main Content Area\" style=\"\" class=\"epan-component epan-sortable-component ui-sortable component-outline epan-sortable-extra-padding\" id=\"MainContentArea\">{{Content}}</div>',1,NULL);
+INSERT INTO `epan_templates` VALUES (1,1,'default','<div id=\"6b9c7e51-526c-41f1-c404-66b136b60a83\" component_namespace=\"baseElements\" component_type=\"TemplateContentRegion\" class=\"epan-sortable-component epan-component  ui-sortable\" style=\"\" contenteditable=\"false\"> 	{{Content}} </div>',1,NULL);
 /*!40000 ALTER TABLE `epan_templates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -557,4 +557,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-31 17:06:11
+-- Dump completed on 2014-06-01 19:32:16
