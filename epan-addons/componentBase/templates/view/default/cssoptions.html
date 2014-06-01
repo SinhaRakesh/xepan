@@ -1,4 +1,5 @@
 <div id="<?$_name?>" class='epan-css-options' style='display:none'>
+	<hr>
 	<h5>Css Options</h5>
 	<!-- <div style='height:530px; overflow:scroll;'> -->
 	
@@ -55,6 +56,18 @@
 									<button id='epan-component-width-in-per' class="btn btn-default btn-xs" type="button">%</button>
 									<button id='epan-component-width-auto' type="button" class="btn btn-default btn-xs">auto</button>
 									<button id='epan-component-width-max' type="button" class="btn btn-default btn-xs">max 100%</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Comp. Height
+								</td>
+								<td>
+									<input type='text' id='epan-component-height-input' class=' ' size='5'/>
+									<button id='epan-component-height-in-px' class="btn btn-default btn-xs" type="button">PX</button>
+									<button id='epan-component-height-in-per' class="btn btn-default btn-xs" type="button">%</button>
+									<button id='epan-component-height-auto' type="button" class="btn btn-default btn-xs">auto</button>
+									<button id='epan-component-height-max' type="button" class="btn btn-default btn-xs">max 100%</button>
 								</td>
 							</tr>
 							<tr>
@@ -550,6 +563,21 @@
 							$('#epan-component-width-max').click(function(event) {
 								$(current_selected_component).css('max-width','100%');
 							});
+
+							$('#epan-component-height-in-per').click(function(event) {
+								$(current_selected_component).css('height',$('#epan-component-height-input').val()+'%');
+							});
+							$('#epan-component-height-in-px').click(function(event) {
+								$(current_selected_component).css('height',$('#epan-component-height-input').val()+'px');
+								$(current_selected_component).css('overflow','hidden');
+							});
+							$('#epan-component-height-auto').click(function(event) {
+								$(current_selected_component).css('height','auto');
+							});
+							$('#epan-component-height-max').click(function(event) {
+								$(current_selected_component).css('max-height','100%');
+							});
+
 							//  GET OPTIONS FROM CURRENT SELECTED COMPONENT
 							function init_css_options(){
 								$('#epan-background-color').val($(current_selected_component).css('background-color'));

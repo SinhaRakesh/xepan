@@ -1,0 +1,83 @@
+<div id='<?$_name?>' class='epan-component-options' component_type="<?$component_type?>">
+	<h3><?$component_type_name?></h3>
+	
+	<div class="btn-group">
+		<button type="button" id='boot_carousel_pause' class="btn btn-default">Pause</button>
+		<button type="button" id='boot_carousel_add_slide' class="btn btn-success">Add New Slide</button>
+		<button type="button" id='boot_carousel_restart' class="btn btn-default">Re Start</button>
+	</div>
+
+	<div class="lable label-primary">Carousel Slides</div>
+	<div id='boot_carousel_items'></div>
+	<div><span id='boot_carousel_trash' class="glyphicon glyphicon-trash pull-right"></span></div>
+	<hr>
+	<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				Carousel Speed in seconds
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<input id='boot_carousel_interval' type="number" name="cousler_interval" id="input" class="form-control" value="2" min="1" max="20" step="1" title="">
+			</div>
+		</div>	
+
+</div>
+<script type="text/javascript">
+// ========== OPTION TO COMPONENT EFFECT ==============
+// 
+// $(your_option_html_element).click(function(event,ui){
+// 		$(current_selected_component).what to do ???
+// }) 
+
+$('#boot_carousel_add_slide').click(function(event) {
+	$(current_selected_component)
+		.find('.carousel-inner')
+		.append($('<div class="item epan-sortable-component" component_type="CarouselSlide"><div class="epan-container text-center">I M Container</div></div>').sortable(s));
+		<?$component_type?>_options.show();
+});
+
+$('#boot_carousel_interval').change(function(event) {
+	$(current_selected_component).find('.carousel').carousel({interval: ($('#boot_carousel_interval').val()*1000)});
+});
+
+$('#boot_carousel_pause').click(function(event) {
+	$(current_selected_component).find('.carousel').carousel('pause');
+});
+
+$('#boot_carousel_restart').click(function(event) {
+	$(current_selected_component).find('.carousel').carousel('cycle');
+});
+
+$('#boot_carousel_trash').droppable({
+   drop : function ( event , img ) {
+      var $element = img.draggable;
+      console.log($($element).html());
+      $('#'+$(current_selected_component).attr('id') + ' .item:nth-child('+($($element).html())+')').detach();
+      $element.detach();
+   }
+});
+
+var <?$component_type?>_options = {
+	show: function (){
+		// ===== THIS CODE RUNS EVERY TIME YOU DOUBLE CLICK YOUR COMPONENT
+		// TO TAKE VALUES FROM COMPONENT AND FILL OPTIONS
+		// 
+		// $(your_option_html_element).text($(current_selected_component).css('border'));
+		// Add Buttons for each slide
+		$('#boot_carousel_items').html("");
+		$(current_selected_component).find('.item').each(function(index, val) {
+			$('#boot_carousel_items').append($('<div class="btn btn-default">'+ (index+1) +'</div>')
+							.click(function(event) {
+								$(current_selected_component).find('.item').removeClass('active')
+								$('#'+$(current_selected_component).attr('id') + ' .item:nth-child('+(index+1)+')').addClass('active');
+							})
+							.draggable({
+                                   opacity : 0.7,
+                                   revert  : 'invalid',
+                                   helper  : 'clone',
+                                   zIndex  : 100,
+                                   cursor  : 'move'
+                            }))
+		});
+	}
+}
+</script>

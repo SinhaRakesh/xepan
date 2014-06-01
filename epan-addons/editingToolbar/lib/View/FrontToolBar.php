@@ -44,10 +44,10 @@ class View_FrontToolBar extends \View{
 			$component_tab = $block_tabs->addTab($installed_components['name']);
 			// $tool_block = $this->add('View',null,'tools')->addClass('block-title');
 			// $tool_block->add('View')->set($installed_components['name']);
-			foreach ($market_place=$installed_components->ref('component_id')->addCondition('type','<>','element') as $market_place_array) {
-				foreach ($tools = $market_place->ref('Tools') as $cmp) {
-					$component_tab->add('editingToolbar/View_Tool',array('namespace'=>$market_place['namespace'],'title'=>$tools['name'],'class'=>'View_Tools_'.str_replace("_", "", $this->api->normalizeName($tools['name'])),'is_serverside'=>$tools['is_serverside'],'is_sortable'=>$tools['is_sortable'],'is_resizable'=>$tools['is_resizable']));
-				}
+			$tools=$this->add('Model_Tools')->addCondition('component_id',$installed_components['component_id']);
+			$tools->join('epan_components_marketplace','component_id')->addField('namespace');
+			foreach ($tools as $cmp) {
+				$component_tab->add('editingToolbar/View_Tool',array('namespace'=>$tools['namespace'],'title'=>$tools['name'],'class'=>'View_Tools_'.str_replace("_", "", $this->api->normalizeName($tools['name'])),'is_serverside'=>$tools['is_serverside'],'is_sortable'=>$tools['is_sortable'],'is_resizable'=>$tools['is_resizable']));
 			}
 		}
 

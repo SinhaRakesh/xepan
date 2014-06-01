@@ -149,11 +149,17 @@ $(".epan-sortable-component").sortable(s = {
                 $(this).find('.remove_btn').remove();
 
             });
+            var str = $(this).attr('component_type') + '_option.object_dropped("' + $(ui.item).parent('.epan-sortable-component').attr('id') + '","' + $(new_obj).attr('id') + '")';
+            try {
+                console.log(ui);
+                eval(str);
+            } catch (err) {
+                console.log(err);
+            }
             // $(ui.item).addClass('drag-handler-attached');
             ui.item.replaceWith(new_obj);
             origin = 'sortable';
             run_time_id = run_time_id + 1;
-
         }
         selectComponent(ui.item);
         $(ui.item).css('opacity', '1');

@@ -352,3 +352,39 @@
   ),
   'header' => false,
 ) 
+[Sun, 01 Jun 2014 15:01:56 +0400] UPLOAD: array (
+  'added' => 
+  array (
+    0 => 
+    array (
+      'mime' => 'image/jpeg',
+      'ts' => 1401620516,
+      'read' => 1,
+      'write' => 1,
+      'size' => 107739,
+      'hash' => 'l1_MS5qcGc',
+      'name' => '1.jpg',
+      'phash' => 'l1_Lw',
+      'tmb' => 1,
+    ),
+  ),
+  'header' => false,
+) 
+[Sun, 01 Jun 2014 15:21:24 +0400] UPLOAD: array (
+  'added' => 
+  array (
+    0 => 
+    array (
+      'mime' => 'image/jpeg',
+      'ts' => 1401621684,
+      'read' => 1,
+      'write' => 1,
+      'size' => 77388,
+      'hash' => 'l1_YWJ0ZXN0aW5nLWNvbnZlcnNpb24teGwuanBn',
+      'name' => 'abtesting-conversion-xl.jpg',
+      'phash' => 'l1_Lw',
+      'tmb' => 1,
+    ),
+  ),
+  'header' => false,
+) 

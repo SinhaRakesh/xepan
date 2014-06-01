@@ -1,0 +1,38 @@
+<div id="<?$_name?>" <?$attributes?> class=' <?$class?>' style=' <?$style?>' >
+	<div id="__COMPONENTID__c" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item active jumbotron">
+				<div class="container">
+					<h1>Slide 1</h1>
+					<p>Contents ...</p>
+					<p>
+						<a class="btn btn-primary btn-lg">Learn more</a>
+					</p>
+				</div>
+			</div>
+			<div class="item jumbotron">
+				<div class="container">
+					<h1>Hello, world!</h1>
+					<p>Contents ...</p>
+					<p>
+						<a class="btn btn-primary btn-lg">Learn more</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- Controls -->
+		<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$('#__COMPONENTID__c').carousel({interval: 2003});
+		});
+	</script>
+</div>
