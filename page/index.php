@@ -154,9 +154,9 @@ class page_index extends Page {
 				."\n");
 		}
 
-		$user_css = '/epans/'.$this->api->current_website['name'].'/mystyles.css';
-		if(file_exists(getcwd().$user_css)){
-			$this->api->template->appendHTML('js_include','<link type="text/css" href="'.$user_css.'" rel="stylesheet" />'."\n");
+		$user_css = 'epans/'.$this->api->current_website['name'].'/mystyles.css';
+		if(file_exists(getcwd().DS.$user_css)){
+			$this->api->template->appendHTML('js_include','<link id="xepan-mystyles-css-link" type="text/css" href="'.$user_css.'" rel="stylesheet" />'."\n");
 		}
 
 		parent::render();

@@ -17,7 +17,7 @@
 						<div id='dashboard-btn' class='btn btn-danger dashboard  btn-sm'>
 							<i class='glyphicon glyphicon-home'></i> Dashboard
 						</div>
-						<div id='epan-option-button' class="btn btn-default btn-sm"><i class='glyphicon glyphicon-chevron-down'></i> Properties</div>
+						<div id='epan-editcss-button' class="btn btn-default btn-sm"><i class='glyphicon glyphicon-chevron-down'></i> Edit CSS</div>
 						<div id='page-property-btn' class='btn btn-info remove btn-sm'>
 							<i class='glyphicon glyphicon-cog'></i> Page Properties
 						</div>
@@ -130,5 +130,9 @@ $('#save-as-snapshot').click(function(event) {
 
 $('#front-app-launcher').click(function(event) {
 	$('body').univ().frameURL('Front Component','?page=owner_frontapplauncher');
+});
+
+$('#epan-editcss-button').click(function(event) {
+	$(this).univ().frameURL('Edit CSS','index.php?page=edit_css&cut_page=1');
 });
 </script>

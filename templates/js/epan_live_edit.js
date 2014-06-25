@@ -232,7 +232,7 @@ function updateBreadCrumb() {
 
 // Based on selection, disable enable the buttons
 function updateActionButtons() {
-    var btns = ['epan-option-button'];
+    var btns = []; //['epan-option-button'];
 
     $.each(btns, function(index, val) {
         /* iterate through array or object */
@@ -405,17 +405,17 @@ $(function() {
     });
 
 
-    $('#epan-option-button').click(function() {
-        if (last_selected_component !== undefined) {
-            current_selected_component = last_selected_component;
-            last_selected_component = undefined;
-        }
+    // $('#epan-option-button').click(function() {
+    //     if (last_selected_component !== undefined) {
+    //         current_selected_component = last_selected_component;
+    //         last_selected_component = undefined;
+    //     }
 
-        updateOptions();
-        if (!$('#epan-quick-component-options').is(':visible')) {
-            $('#epan-quick-component-options').slideDown('fast');
-        }
-    });
+    //     updateOptions();
+    //     if (!$('#epan-quick-component-options').is(':visible')) {
+    //         $('#epan-quick-component-options').slideDown('fast');
+    //     }
+    // });
 
 
     // Hide options in start
@@ -564,7 +564,7 @@ $(function() {
 
 
     shortcut.add("F1", function(event) {
-        $('body').univ().frameURL('Help', '?page=editor_help');
+        $('body').univ().frameURL('Help', '?page=help');
     });
 
     shortcut.add("Ctrl+Shift+<", function(event) {

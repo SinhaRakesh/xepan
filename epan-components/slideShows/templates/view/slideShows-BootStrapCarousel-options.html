@@ -31,7 +31,7 @@
 $('#boot_carousel_add_slide').click(function(event) {
 	$(current_selected_component)
 		.find('.carousel-inner')
-		.append($('<div class="item epan-sortable-component" component_type="CarouselSlide"><div class="epan-container text-center">I M Container</div></div>').sortable(s));
+		.append($('<div class="item epan-sortable-component" component_type="CarouselSlide"></div>').sortable(s));
 		<?$component_type?>_options.show();
 });
 
