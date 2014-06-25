@@ -344,7 +344,7 @@ CREATE TABLE `epan_page` (
 
 LOCK TABLES `epan_page` WRITE;
 /*!40000 ALTER TABLE `epan_page` DISABLE KEYS */;
-INSERT INTO `epan_page` VALUES (1,0,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.','<div id=\"487a1896-eb10-41ea-d161-5ac09e106561\" component_namespace=\"baseElements\" component_type=\"Row\" class=\"row  epan-sortable-component epan-component  ui-sortable epan-sortable-extra-padding component-outline\" style=\" \"> 	 <div id=\"9fb508aa-8dc7-441f-c5ae-5e6f703a214f\" component_namespace=\"baseElements\" component_type=\"Column\" class=\"col-md-4  epan-sortable-component epan-component  ui-sortable component-outline\" span=\"4\" style=\" \"> 	 <div id=\"0d204f3e-1d6a-4610-a66c-5b8c5670625f\" component_namespace=\"extendedImages\" component_type=\"ImageWithDescription1\" class=\"epan-component  component-outline\" style=\" \"> 	<div class=\"imagepluscontainer\" style=\"z-index:2\"> 		<div class=\"epan-component\" component_type=\"Image\"><img src=\"logo.png\" style=\"width:100%; max-width:100%\"></div> 		<div class=\"desc editor\" style=\"width:100%; max-width:100%; left-padding:auto; right-padding:auto\" contenteditable=\"true\"> 			Capable of seating 50,000 spectators, the <a href=\"http://en.wikipedia.org/wiki/Colosseum\">Colosseum</a> was used for gladiatorial contests and public spectacles such as executions. 		</div> 	</div> 	<script type=\"text/javascript\"> 		$.atk4.includeCSS(\"epan-components/extendedImages/templates/css/extendedImages-ImageWithDescription1\"); 	</script> </div></div><div id=\"e102aaf9-f0c5-43d0-98f8-1799adb6205b\" component_namespace=\"baseElements\" component_type=\"Column\" class=\"col-md-4  epan-sortable-component epan-component  ui-sortable component-outline\" span=\"4\" style=\" \"> 	 </div></div>','cursor: auto; overflow: auto;',NULL,'2014-06-25 13:02:28','public',1);
+INSERT INTO `epan_page` VALUES (1,0,'home','Home',1,0,'xEpan CMS, an innovative approach towards Drag And Drop CMS.','World\'s best and easiest cms :)','xEpan CMS, an innovative approach towards Drag And Drop CMS.','','cursor: auto; overflow: auto;',NULL,'2014-06-25 13:10:13','public',1);
 /*!40000 ALTER TABLE `epan_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -566,4 +566,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-25 13:09:35
+-- Dump completed on 2014-06-25 13:10:26
