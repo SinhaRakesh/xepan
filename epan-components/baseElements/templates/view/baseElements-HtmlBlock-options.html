@@ -1,0 +1,36 @@
+<div id='<?$_name?>' class='epan-component-options' component_type="<?$component_type?>">
+	<h3><?$component_type_name?></h3>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<textarea id='xepan_html_code_for_html_block' style='width:100%; font-size:10px' rows='10'>
+			</textarea>
+		</div>
+	</div>
+
+	<button id='xepan_html_code_for_html_block_btn' class='btn btn-default btn-sm'>UPDATE</button>
+
+
+</div>
+<script type="text/javascript">
+// ========== OPTION TO COMPONENT EFFECT ==============
+// 
+// $(your_option_html_element).click(function(event,ui){
+// 		$(current_selected_component).what to do ???
+// }) 
+
+$('#xepan_html_code_for_html_block_btn').click(function(event) {
+	$(current_selected_component).html($('#xepan_html_code_for_html_block').val());
+});
+
+var <?$component_type?>_options = {
+	show: function (){
+		// ===== THIS CODE RUNS EVERY TIME YOU DOUBLE CLICK YOUR COMPONENT
+		// TO TAKE VALUES FROM COMPONENT AND FILL OPTIONS
+		// 
+		// $(your_option_html_element).text($(current_selected_component).css('border'));
+		html_text = $(current_selected_component).html();		
+		$('#xepan_html_code_for_html_block').val(html_text);
+	}
+}
+</script>
