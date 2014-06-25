@@ -1,7 +1,7 @@
 <div id='<?$_name?>' class='epan-component-options' component_type="<?$component_type?>">
 	<h3><?$component_type_name?></h3>
 
-	<input type='text' value='' id='__COMPONENTID__b' />
+	<input type='text' value='' id='input_option_b' />
 
 
 </div>
@@ -12,8 +12,8 @@
 // 		$(current_selected_component).what to do ???
 // }) 
 
-$('#__COMPONENTID__b').change(function(event) {
-	$(current_selected_component).find('b').text($('#__COMPONENTID__b').val());
+$('#input_option_b').change(function(event) {
+	$(current_selected_component).find('b').text($('#input_option_b').val());
 });
 
 var <?$component_type?>_options = {
@@ -22,7 +22,7 @@ var <?$component_type?>_options = {
 		// TO TAKE VALUES FROM COMPONENT AND FILL OPTIONS
 		// 
 		// $(your_option_html_element).text($(current_selected_component).css('border'));
-		$('#__COMPONENTID__b').val($(current_selected_component).find('b').text());
+		$('#input_option_b').val($(current_selected_component).find('b').text());
 	}
 }
 </script>
