@@ -90,6 +90,8 @@ class View_Tool extends \View {
 		
 		if($this->is_serverside ){
 			$drag_html = $this->add('View',null,null,array('view/editingToolbar-tool-ssc'));
+			$drag_html->template->append('attributes','component_namespace="'.$this->namespace .'"');
+			$drag_html->template->append('attributes','component_type="'.str_replace("View_Tools_", "", $this->class).'"');
 			$drag_html->setAttr('data-responsible-namespace',$this->namespace);
 			$drag_html->setAttr('data-responsible-view',$this->class);
 			$drag_html->setAttr('data-is-serverside-component','true');
