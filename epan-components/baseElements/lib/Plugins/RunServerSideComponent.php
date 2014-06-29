@@ -19,7 +19,7 @@ class Plugins_RunServerSideComponent extends \componentBase\Plugin {
 
 			$namespace =  pq($ssc)->attr('data-responsible-namespace');
 			$view =  pq($ssc)->attr('data-responsible-view');
-			if(!file_exists(getcwd().DS.'epan-components'.DS.$namespace.DS.'View'.DS.'Tools'.DS.str_replace("View_Tools_", "", $view) .'.php'))
+			if(!file_exists($path = getcwd().DS.'epan-components'.DS.$namespace.DS.'lib'.DS.'View'.DS.'Tools'.DS.str_replace("View_Tools_", "", $view) .'.php'))
 				$temp_view = $this->add('View_Error')->set("Server Side Component Not Found :: $namespace/$view");
 			else
 				$temp_view = $this->add("$namespace/$view",array('options'=>pq($ssc)->attr('data-options')));
